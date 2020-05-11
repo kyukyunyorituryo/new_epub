@@ -1,4 +1,4 @@
-templete='            <li class="media mb-3 alert-warning ">\n  <div class="img-container--table-cell d-flex align-items-center">\n    <img src="<%= image_url %>" class="mr-3" alt="<%= title %>"/>\n  </div>\n                <div class="media-body ml-3">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>\n                </div>\n            </li>'
+templete='            <li class="media mb-3 alert-warning ">\n  <div class="img-container--table-cell d-flex align-items-center">\n    <img src="<%= image_url %>" class="mr-3" alt="<%= title %>"/>\n  </div>\n                <div class="media-body ml-3">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n<p>カテゴリー：<%= category %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>\n                </div>\n            </li>'
 
 nav=[];
 function templeterender(items){
@@ -9,7 +9,8 @@ for (let i = 0; i < items.length; i++) {
         price:items[i].Price,
         url: items[i].URL,
         contributor:items[i].Contributor,
-        publisher:items[i].Publisher
+        publisher:items[i].Publisher,
+        category:items[i].Category
     })
     }}
 
