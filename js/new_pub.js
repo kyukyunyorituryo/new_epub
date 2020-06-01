@@ -32,83 +32,93 @@ function comicfn(){
 var comic = document.getElementById('comic');
 comic.addEventListener('click', function() {
 nav=[]
-comics = items.filter(word => word.Booktype =='コミック');
+comics = items.filter(word => word.Category.includes('コミック'));
 $('#frame').children().remove();
 templeterender(comics)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-//単行本をクリックすると、単行本だけが表示される。
-function abookfn(){
-var abook = document.getElementById('abook');
-abook .addEventListener('click', function() {
+//アダルトをクリックすると、単行本だけが表示される。
+function adultfn(){
+var adult = document.getElementById('adult');
+adult .addEventListener('click', function() {
 nav=[]
-abooks = items.filter(word => word.Booktype =='単行本');
+adults =  items.filter(word => word.Category.includes('アダルト'));
 $('#frame').children().remove();
-templeterender(abooks)
+templeterender(adults)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
 
-//ソフトカバー
-function softcoverfn(){
-var softcover = document.getElementById('softcover');
-softcover.addEventListener('click', function() {
+//BL
+function blfn(){
+var bl = document.getElementById('bl');
+bl.addEventListener('click', function() {
 nav=[]
-softcovers = items.filter(word => word.Booktype =='単行本（ソフトカバー）');
+bls = items.filter(word => word.Category.includes('BL'));
 $('#frame').children().remove();
-templeterender(softcovers)
+templeterender(bls)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
 
 
-//大型本
-function largebookfn(){
-var largebook = document.getElementById('largebook');
-largebook.addEventListener('click', function() {
+//ビジネス・経済
+function businessfn(){
+var business = document.getElementById('business');
+business.addEventListener('click', function() {
 nav=[]
-largebooks = items.filter(word => word.Booktype =='大型本');
+businesss = items.filter(word => word.Category.includes('ビジネス・経済'));
 $('#frame').children().remove();
-templeterender(largebooks)
+templeterender(businesss)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
 
-//文庫
-function pocketeditionfn(){
-var pocketedition = document.getElementById('pocketedition');
-pocketedition.addEventListener('click', function() {
+//その他
+function otherfn(){
+var other = document.getElementById('other');
+other.addEventListener('click', function() {
 nav=[]
-pocketeditions = items.filter(word => word.Booktype =='文庫');
+others = items.filter(word => word.Category.includes('その他'));
 $('#frame').children().remove();
-templeterender(pocketeditions)
+templeterender(others)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-//ペーパーバック
-function paperbackfn(){
-var paperback = document.getElementById('paperback');
-paperback.addEventListener('click', function() {
+//趣味
+function hobbyfn(){
+var hobby = document.getElementById('hobby');
+hobby.addEventListener('click', function() {
 nav=[]
-paperbacks = items.filter(word => word.Booktype =='ペーパーバック');
+hobbys = items.filter(word => word.Category.includes('趣味'));
 $('#frame').children().remove();
-templeterender(paperbacks)
+templeterender(hobbys)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-//ムック
-function mookfn(){
-var mook = document.getElementById('mook');
-mook.addEventListener('click', function() {
+//文学
+function literaturefn(){
+var literature = document.getElementById('literature');
+literature.addEventListener('click', function() {
 nav=[]
-mooks = items.filter(word => word.Booktype =='ムック');
+literatures = items.filter(word => word.Category.includes('文学'));
 $('#frame').children().remove();
-templeterender(mooks)
+templeterender(literatures)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-
+//絵本
+function picturebookfn(){
+var picturebook = document.getElementById('picturebook');
+picturebook.addEventListener('click', function() {
+nav=[]
+picturebooks = items.filter(word => word.Category.includes('絵本'));
+$('#frame').children().remove();
+templeterender(picturebooks)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 //日付を選択して切り替える
 function selectdays(day){
 
@@ -151,12 +161,13 @@ var getQuery = function() {
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
 comicfn()
-abookfn()
-softcoverfn()
-largebookfn()
-pocketeditionfn()
-paperbackfn()
-mookfn()
+adultfn()
+blfn()
+businessfn()
+otherfn()
+hobbyfn()
+literaturefn()
+picturebookfn()
 
 $('#datetimepicker1').on("dp.change", function(e){
 
