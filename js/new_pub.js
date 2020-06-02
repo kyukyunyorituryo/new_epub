@@ -55,7 +55,7 @@ function blfn(){
 var bl = document.getElementById('bl');
 bl.addEventListener('click', function() {
 nav=[]
-bls = items.filter(word => word.Category.includes('BL'));
+bls = items.filter(word => word.Category.includes('ボーイズラブ'));
 $('#frame').children().remove();
 templeterender(bls)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
