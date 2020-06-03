@@ -157,7 +157,6 @@ var getQuery = function() {
 	return query; 
 }
 
-
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
 comicfn()
@@ -181,9 +180,19 @@ if (query!==undefined){
 nextday=query
 document.getElementById('release').textContent=nextday+'の新刊'
 }
+var url = location.href ;
+//frameに子要素がなかったら実行する
+child=document.getElementById('frame').children
+if (child.length==0){
+
 json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+nextday+"j.json"
 getJSON(json_data)
-
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
-
+}
+else{
+date=url.match(/\d{8}/gi)[0]
+json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+date+"j.json"
+getJSON(json_data)
+    for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}
   });
