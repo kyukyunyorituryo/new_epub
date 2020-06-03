@@ -1,0 +1,571 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_epub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="キンドルの新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェック">
+<meta name="twitter:description" content="キンドルの新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg">
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <!-- までできていない。
+    <p><a class="nav-link" href="list.html">発売日一覧</a></p>
+     -->
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+<div class="nondisplayFrame">
+        <h2 class="alert alert-success">カテゴリの選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='adult' type="button" class="btn btn-outline-secondary">アダルト</button>
+<button id='bl' type="button" class="btn btn-outline-success">BL</button>
+<button id='business' type="button" class="btn btn-outline-danger">ビジネス・経済</button>
+<button id='other' type="button" class="btn btn-outline-warning">その他</button>
+<button id='hobby' type="button" class="btn btn-outline-info">趣味・実用</button>
+<button id='literature'  type="button" class="btn btn-outline-dark">文学・評論</button>
+<button id='picturebook' type="button" class="btn btn-outline-primary">絵本・児童書</button>
+</div>
+<style type="text/css">
+.nondisplayFrame {
+  display:inline;
+}
+</style>
+<!-- 
+後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">明日発売される本</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41rRpWvYwdL.jpg" class="mr-3" alt="ＮＨＫすてきにハンドメイド　2020年 8月号 ［雑誌］ ＮＨＫ すてきにハンドメイド (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫすてきにハンドメイド　2020年 8月号 ［雑誌］ ＮＨＫ すてきにハンドメイド (NHKテキスト)</h5>
+                    <p>価格：524円</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08577Z1KY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41u9A-xP3oL.jpg" class="mr-3" alt="ＮＨＫきょうの料理　2020年 8月号 ［雑誌］ ＮＨＫ きょうの料理 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫきょうの料理　2020年 8月号 ［雑誌］ ＮＨＫ きょうの料理 (NHKテキスト)</h5>
+                    <p>価格：524円</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856X7PK9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41e2B6BLK1L.jpg" class="mr-3" alt="ＮＨＫ趣味の園芸　やさいの時間　2020年 8･9月号 ［雑誌］ ＮＨＫ 趣味の園芸 やさいの時間 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫ趣味の園芸　やさいの時間　2020年 8･9月号 ［雑誌］ ＮＨＫ 趣味の園芸 やさいの時間 (NHKテキスト)</h5>
+                    <p>価格：822円</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856RD11Q?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/415AJO57j0L.jpg" class="mr-3" alt="ＮＨＫ趣味の園芸　2020年 8月号 ［雑誌］ ＮＨＫ 趣味の園芸 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫ趣味の園芸　2020年 8月号 ［雑誌］ ＮＨＫ 趣味の園芸 (NHKテキスト)</h5>
+                    <p>価格：608円</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856QQ3KJ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41jQkAF8KHL.jpg" class="mr-3" alt="ＮＨＫ短歌　2020年 8月号 ［雑誌］ ＮＨＫ 短歌 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫ短歌　2020年 8月号 ［雑誌］ ＮＨＫ 短歌 (NHKテキスト)</h5>
+                    <p>価格：628円</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08574YSNW?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/410kjZlxWrL.jpg" class="mr-3" alt="ＮＨＫ俳句　2020年 8月号 ［雑誌］ ＮＨＫ 俳句 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫ俳句　2020年 8月号 ［雑誌］ ＮＨＫ 俳句 (NHKテキスト)</h5>
+                    <p>価格：628円</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B085748ZHT?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/5121f7JOerL.jpg" class="mr-3" alt="幸福は不幸の種【短編】14"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>幸福は不幸の種【短編】14</h5>
+                    <p>価格：198円</p>
+                    <p>阪口ナオミ(著)</p>
+                    <p>竹書房</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B084WRNHTN?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51jmQwzdVtL.jpg" class="mr-3" alt="血と蜜の部屋【短編】15"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>血と蜜の部屋【短編】15</h5>
+                    <p>価格：198円</p>
+                    <p>東タイラ(著)</p>
+                    <p>竹書房</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B084WRG11M?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51tcexJqG1L.jpg" class="mr-3" alt="レス～してくれれば、しなかった～【短編】15"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>レス～してくれれば、しなかった～【短編】15</h5>
+                    <p>価格：198円</p>
+                    <p>つかさき有(著)</p>
+                    <p>竹書房</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B084WQ1CS6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51tbR6nw9UL.jpg" class="mr-3" alt="夏に跳ねたら恋愛【単話】 1 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>夏に跳ねたら恋愛【単話】 1 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>間宮法子(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LYW956?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51I4M+PTmHL.jpg" class="mr-3" alt="ラブロッサム 上山田町男子バレエ団【単話】 1 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ラブロッサム 上山田町男子バレエ団【単話】 1 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>泥星ルカ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LXYQPP?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/512wqPFau1L.jpg" class="mr-3" alt="君にくるまって、【単話】 5 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>君にくるまって、【単話】 5 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>桃子すいか(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LXY4CM?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51pm6sFiYOL.jpg" class="mr-3" alt="極上コンマスに暴かれる！【単話】 5 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>極上コンマスに暴かれる！【単話】 5 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>乙輝潤(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LV6FHG?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51-r+OA4JTL.jpg" class="mr-3" alt="ラブロッサム 上山田町男子バレエ団【単話】 3 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ラブロッサム 上山田町男子バレエ団【単話】 3 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>泥星ルカ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LTGVG3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51QfSJDfSUL.jpg" class="mr-3" alt="別れ道のふたり【単話】 1 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>別れ道のふたり【単話】 1 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>桜巳亞子(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LT4N6B?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51amEKV3b-L.jpg" class="mr-3" alt="あれよ、あれよ【単話】 1 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>あれよ、あれよ【単話】 1 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>のきようこ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LT3QBN?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51JY+HEugDL.jpg" class="mr-3" alt="あれよ、あれよ【単話】 3 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>あれよ、あれよ【単話】 3 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>のきようこ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LSYL5P?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51svHR5ymfL.jpg" class="mr-3" alt="例えば雪が融け合うように【単話】 2 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>例えば雪が融け合うように【単話】 2 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>カサイウカ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LSSBVJ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51NscsjODkL.jpg" class="mr-3" alt="別れ道のふたり【単話】 2 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>別れ道のふたり【単話】 2 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>桜巳亞子(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LRJG31?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51km2v8wm9L.jpg" class="mr-3" alt="君にくるまって、【単話】 6 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>君にくるまって、【単話】 6 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>桃子すいか(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LQ294V?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51mxjAD2ZXL.jpg" class="mr-3" alt="極上コンマスに暴かれる！【単話】 6 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>極上コンマスに暴かれる！【単話】 6 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>乙輝潤(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LNV6N7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/516xp6EX9QL.jpg" class="mr-3" alt="例えば雪が融け合うように【単話】 3 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>例えば雪が融け合うように【単話】 3 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>カサイウカ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LN7FJB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51-fk2To9NL.jpg" class="mr-3" alt="ラブロッサム 上山田町男子バレエ団【単話】 2 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ラブロッサム 上山田町男子バレエ団【単話】 2 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>泥星ルカ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LM5X13?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51SppeC9JEL.jpg" class="mr-3" alt="夏に跳ねたら恋愛【単話】 3 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>夏に跳ねたら恋愛【単話】 3 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>間宮法子(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LLKRX4?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51LsqCOJJNL.jpg" class="mr-3" alt="君にくるまって、【単話】 4 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>君にくるまって、【単話】 4 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>桃子すいか(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LLHPX1?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51AvzveK2NL.jpg" class="mr-3" alt="あれよ、あれよ【単話】 2 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>あれよ、あれよ【単話】 2 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>のきようこ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LJH14X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51O+HZXm2EL.jpg" class="mr-3" alt="例えば雪が融け合うように【単話】 1 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>例えば雪が融け合うように【単話】 1 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>カサイウカ(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LJF7VW?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/517bnsr7lJL.jpg" class="mr-3" alt="極上コンマスに暴かれる！【単話】 4 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>極上コンマスに暴かれる！【単話】 4 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>乙輝潤(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LJCJFB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/519AgYx2RZL.jpg" class="mr-3" alt="夏に跳ねたら恋愛【単話】 2 (enigma)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>夏に跳ねたら恋愛【単話】 2 (enigma)</h5>
+                    <p>価格：165円</p>
+                    <p>間宮法子(著)</p>
+                    <p>オークラ出版</p>
+<p>カテゴリー：ジャンル別,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LHYLP8?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="なし" class="mr-3" alt="GOETHE[ゲーテ] 2020年9月号[雑誌]"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>GOETHE[ゲーテ] 2020年9月号[雑誌]</h5>
+                    <p>価格：850円</p>
+                    <p>幻冬舎(著)</p>
+                    <p>幻冬舎</p>
+<p>カテゴリー：ジャンル別,男性ファッション・ライフスタイル</p>
+                    <a href="https://www.amazon.co.jp/dp/B0868KF5H3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51BkE-MI7bL.jpg" class="mr-3" alt="バイオレンス・ファミリー　ママ友はＤＶ一家【短編】5"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>バイオレンス・ファミリー　ママ友はＤＶ一家【短編】5</h5>
+                    <p>価格：198円</p>
+                    <p>森脇葵(著)</p>
+                    <p>竹書房</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B084WRJ592?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

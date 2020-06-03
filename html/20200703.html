@@ -1,0 +1,1078 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_epub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="キンドルの新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェック">
+<meta name="twitter:description" content="キンドルの新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg">
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <!-- までできていない。
+    <p><a class="nav-link" href="list.html">発売日一覧</a></p>
+     -->
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+<div class="nondisplayFrame">
+        <h2 class="alert alert-success">カテゴリの選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='adult' type="button" class="btn btn-outline-secondary">アダルト</button>
+<button id='bl' type="button" class="btn btn-outline-success">BL</button>
+<button id='business' type="button" class="btn btn-outline-danger">ビジネス・経済</button>
+<button id='other' type="button" class="btn btn-outline-warning">その他</button>
+<button id='hobby' type="button" class="btn btn-outline-info">趣味・実用</button>
+<button id='literature'  type="button" class="btn btn-outline-dark">文学・評論</button>
+<button id='picturebook' type="button" class="btn btn-outline-primary">絵本・児童書</button>
+</div>
+<style type="text/css">
+.nondisplayFrame {
+  display:inline;
+}
+</style>
+<!-- 
+後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">明日発売される本</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51a2QMpmFyL.jpg" class="mr-3" alt="復讐チャンネル ウラミン ～公開処刑ナマ配信中～（分冊版） 【第9話】 (comic RiSky(リスキー))"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>復讐チャンネル ウラミン ～公開処刑ナマ配信中～（分冊版） 【第9話】 (comic RiSky(リスキー))</h5>
+                    <p>価格：165円</p>
+                    <p>飯星シンヤ(著)</p>
+                    <p>ぶんか社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0895LSY8Q?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51qHGClxW6L.jpg" class="mr-3" alt="ガテン農家と朝まで絶倫同居 14 (恋愛宣言)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ガテン農家と朝まで絶倫同居 14 (恋愛宣言)</h5>
+                    <p>価格：110円</p>
+                    <p>知葉サナガ(著)</p>
+                    <p>大都社／秋水社</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089D27YLS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51A2wXBVsrL.jpg" class="mr-3" alt="溺レる天使 5（分冊版） 溺レる天使シリーズ (エクレア文庫プチ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>溺レる天使 5（分冊版） 溺レる天使シリーズ (エクレア文庫プチ)</h5>
+                    <p>価格：110円</p>
+                    <p>美月(著)</p>
+                    <p>MUGENUP</p>
+<p>カテゴリー：ジャンル別,ボーイズラブノベルス</p>
+                    <a href="https://www.amazon.co.jp/dp/B089KG8V1Q?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Xp0PvQdUL.jpg" class="mr-3" alt="戸籍のない子 ～玲奈、15歳の絶望～（分冊版） 【第1話】 (comic RiSky(リスキー))"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>戸籍のない子 ～玲奈、15歳の絶望～（分冊版） 【第1話】 (comic RiSky(リスキー))</h5>
+                    <p>価格：165円</p>
+                    <p>酒川郁子(著)</p>
+                    <p>ぶんか社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0895M7G97?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51QTK-ueavL.jpg" class="mr-3" alt="ヤミ川崎～もがきの境界線～（分冊版） 【第11話】 (comic RiSky(リスキー))"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ヤミ川崎～もがきの境界線～（分冊版） 【第11話】 (comic RiSky(リスキー))</h5>
+                    <p>価格：165円</p>
+                    <p>関達也(著)</p>
+                    <p>ぶんか社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0895M44D6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/61jLgcRGTXL.jpg" class="mr-3" alt="白い誘惑（単話版） (comic RiSky(リスキー))"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>白い誘惑（単話版） (comic RiSky(リスキー))</h5>
+                    <p>価格：165円</p>
+                    <p>三木内麻耶(著)</p>
+                    <p>ぶんか社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0895M3Y81?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51FtczkHrzL.jpg" class="mr-3" alt="特定犯 ～ストーカー女に住所がバレました～（分冊版） 【第5話】 (comic RiSky(リスキー))"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>特定犯 ～ストーカー女に住所がバレました～（分冊版） 【第5話】 (comic RiSky(リスキー))</h5>
+                    <p>価格：165円</p>
+                    <p>カワディMAX(著)</p>
+                    <p>ぶんか社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0895KCBJP?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51gwBein4RL.jpg" class="mr-3" alt="家でも会社でもリゾートでも！好きなだけハーレム・ハメ放題っ！！（フルカラー版） (メディア編集部)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>家でも会社でもリゾートでも！好きなだけハーレム・ハメ放題っ！！（フルカラー版） (メディア編集部)</h5>
+                    <p>価格：1100円</p>
+                    <p>ヴァニラCREAM(著)</p>
+                    <p>デジタルコミック流通ネットワーク</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0891424XB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/61Klsc6irxL.jpg" class="mr-3" alt="狡猾な被虐愛 (ソーニャ文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>狡猾な被虐愛 (ソーニャ文庫)</h5>
+                    <p>価格：693円</p>
+                    <p>葉月エリカ(著)</p>
+                    <p>イースト・プレス</p>
+<p>カテゴリー：ライトノベル,Featured Categories,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B088M28VHH?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51V2JGrSS4L.jpg" class="mr-3" alt="断罪者は恋に惑う (ソーニャ文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>断罪者は恋に惑う (ソーニャ文庫)</h5>
+                    <p>価格：770円</p>
+                    <p>斉河燈(著)</p>
+                    <p>イースト・プレス</p>
+<p>カテゴリー：ライトノベル,Featured Categories,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B088LN2JW4?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51lsU-nkhiL.jpg" class="mr-3" alt="逞しい腕に奪われる　一途なレスキュー隊員の溺愛SEX（9） (秋水社/MAHK)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>逞しい腕に奪われる　一途なレスキュー隊員の溺愛SEX（9） (秋水社/MAHK)</h5>
+                    <p>価格：165円</p>
+                    <p>フジキハルカ(著)</p>
+                    <p>秋水社/MAHK</p>
+<p>カテゴリー：ジャンル別,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0896YJTH3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51wHM0eTyIL.jpg" class="mr-3" alt="ねこ飼道 1 (クイーンズセレクション)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ねこ飼道 1 (クイーンズセレクション)</h5>
+                    <p>価格：660円</p>
+                    <p>たちばないさぎ(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RC42K3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51h9Sc2+8CL.jpg" class="mr-3" alt="ご無沙汰エッチは感度がスゴい！～溜まった分だけ抱いていい？１３ (ラブきゅんコミック)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ご無沙汰エッチは感度がスゴい！～溜まった分だけ抱いていい？１３ (ラブきゅんコミック)</h5>
+                    <p>価格：220円</p>
+                    <p>玄野さわ(著)</p>
+                    <p>モバイルメディアリサーチ</p>
+<p>カテゴリー：コミック,モバイルメディアリサーチ,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089DNMCTV?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51JjMr7hYwL.jpg" class="mr-3" alt="ファーストコール ～童貞外科医、年下ヤクザの嫁にされそうです！～6（分冊版） ファーストコールシリーズ (エクレア文庫プチ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ファーストコール ～童貞外科医、年下ヤクザの嫁にされそうです！～6（分冊版） ファーストコールシリーズ (エクレア文庫プチ)</h5>
+                    <p>価格：110円</p>
+                    <p>谷崎トルク(著)</p>
+                    <p>MUGENUP</p>
+<p>カテゴリー：ジャンル別,ボーイズラブノベルス</p>
+                    <a href="https://www.amazon.co.jp/dp/B0897RGNCK?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51769JTNffL.jpg" class="mr-3" alt="OTAKUな妹のいる暮らし　2 (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>OTAKUな妹のいる暮らし　2 (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>みやもと 留美(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B086H1BRY6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51EFQqaAbWL.jpg" class="mr-3" alt="OTAKUな妹のいる暮らし　1 (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>OTAKUな妹のいる暮らし　1 (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>みやもと 留美(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B086H1NW8P?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51xfr7CeMSL.jpg" class="mr-3" alt="彼女に内緒でイケナイ関係 誘惑してくる彼女の妹はかわいい女子学生 笠木いちか (MAXING美少女写真集)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>彼女に内緒でイケナイ関係 誘惑してくる彼女の妹はかわいい女子学生 笠木いちか (MAXING美少女写真集)</h5>
+                    <p>価格：198円</p>
+                    <p>MAXING(著)</p>
+                    <p>MTEX</p>
+<p>カテゴリー：写真集,写真集</p>
+                    <a href="https://www.amazon.co.jp/dp/B088WC3JQJ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51S0VsJSaUL.jpg" class="mr-3" alt="母さんがこっそりオレの媚薬を飲んで勝手に発情した姿がエロかったので…(11) (ナイトコミック)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>母さんがこっそりオレの媚薬を飲んで勝手に発情した姿がエロかったので…(11) (ナイトコミック)</h5>
+                    <p>価格：330円</p>
+                    <p>ほよよ(著)</p>
+                    <p>ナイトコミック</p>
+<p>カテゴリー：コミック,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B086DC18ML?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51SX84rAIPL.jpg" class="mr-3" alt="プロ野球レジェンド物語　３ (エンペラーズコミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>プロ野球レジェンド物語　３ (エンペラーズコミックス)</h5>
+                    <p>価格：660円</p>
+                    <p>五十嵐幸吉(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：コミック,スポーツ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RCFZC7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51pkU7VWtHL.jpg" class="mr-3" alt="同級生とそういう関係になった件 (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>同級生とそういう関係になった件 (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>みやもと留美(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0871RPH3Q?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51SDaaGE+aL.jpg" class="mr-3" alt="僕の彼女はY●uTuber!撮影内容はまさかのNTR…裏切り行為にショックなはずなのに鬱勃起した僕 森本つぐみ (MAXING美少女写真集)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>僕の彼女はY●uTuber!撮影内容はまさかのNTR…裏切り行為にショックなはずなのに鬱勃起した僕 森本つぐみ (MAXING美少女写真集)</h5>
+                    <p>価格：198円</p>
+                    <p>MAXING(著)</p>
+                    <p>MTEX</p>
+<p>カテゴリー：写真集,写真集</p>
+                    <a href="https://www.amazon.co.jp/dp/B088WGRG2P?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51TMlH7-zOL.jpg" class="mr-3" alt="出張先でまさかの相部屋 変態部長にハメられた巨乳新人社員 双葉ひより (MAXING美少女写真集)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>出張先でまさかの相部屋 変態部長にハメられた巨乳新人社員 双葉ひより (MAXING美少女写真集)</h5>
+                    <p>価格：198円</p>
+                    <p>MAXING(著)</p>
+                    <p>MTEX</p>
+<p>カテゴリー：写真集,写真集</p>
+                    <a href="https://www.amazon.co.jp/dp/B088WJV7F6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51SiRqft8+L.jpg" class="mr-3" alt="チェリーパイ (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>チェリーパイ (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>井ノ本リカ子(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RBZ12X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51XuG784E3L.jpg" class="mr-3" alt="ぷるぷる娘 (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ぷるぷる娘 (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>BENNY&#39;S(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RCNB6Q?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/5183MRP4ptL.jpg" class="mr-3" alt="Honey Girl (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>Honey Girl (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>井ノ本リカ子(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RBX46N?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51k75FIGDJL.jpg" class="mr-3" alt="援助恋愛 ～一万五千円の繋がり～11 (Rush!)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>援助恋愛 ～一万五千円の繋がり～11 (Rush!)</h5>
+                    <p>価格：198円</p>
+                    <p>サニー(著)</p>
+                    <p>Rush！</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089M179F7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51w0LUnLczL.jpg" class="mr-3" alt="二律背反～ベッドの上では演技が本気になる。6 (Blue&amp;)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>二律背反～ベッドの上では演技が本気になる。6 (Blue&amp;)</h5>
+                    <p>価格：198円</p>
+                    <p>GYEUL(著)</p>
+                    <p>Rush！</p>
+<p>カテゴリー：コミック・ラノベ・BL,ミステリー,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LZHZGQ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51r69kC6sZL.jpg" class="mr-3" alt="ニューフェイス～チートスペックを手に入れたので、エロい女たちを満喫します11 (comic Blast)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ニューフェイス～チートスペックを手に入れたので、エロい女たちを満喫します11 (comic Blast)</h5>
+                    <p>価格：198円</p>
+                    <p>LSD(著)</p>
+                    <p>Rush！</p>
+<p>カテゴリー：コミック・ラノベ・BL,SF</p>
+                    <a href="https://www.amazon.co.jp/dp/B089LM7N55?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51WcCnJfBmL.jpg" class="mr-3" alt="おしかけギャルと同棲性活！？-こいつとのセックス、思った以上に…-(6) (大人の極嬢絵本)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>おしかけギャルと同棲性活！？-こいつとのセックス、思った以上に…-(6) (大人の極嬢絵本)</h5>
+                    <p>価格：330円</p>
+                    <p>まくわうに(著)</p>
+                    <p>キャスコミ</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089KHZHZY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51RcXrkdmzL.jpg" class="mr-3" alt="新退魔士カグヤ-抵抗することも出来ないまま強制的な絶頂を与えられ続けた私は…-(14) (大人の極嬢絵本)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>新退魔士カグヤ-抵抗することも出来ないまま強制的な絶頂を与えられ続けた私は…-(14) (大人の極嬢絵本)</h5>
+                    <p>価格：440円</p>
+                    <p>クリムゾン(著)</p>
+                    <p>キャスコミ</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B089KGBNSF?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51GLVWWtGsL.jpg" class="mr-3" alt="「転職」や「副業」を考えたときに読む本: AI・働き方改革時代に生き残る「マインドセット」とは"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>「転職」や「副業」を考えたときに読む本: AI・働き方改革時代に生き残る「マインドセット」とは</h5>
+                    <p>価格：880円</p>
+                    <p>紅井彗星(著)</p>
+                    <p>なし</p>
+<p>カテゴリー：消費者問題,ビジネス・経済,社会学</p>
+                    <a href="https://www.amazon.co.jp/dp/B089FSYWLR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51ruCdSpGBL.jpg" class="mr-3" alt="モバイルBL宣言 vol.75"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>モバイルBL宣言 vol.75</h5>
+                    <p>価格：330円</p>
+                    <p>風雅ゆゆ(著)</p>
+                    <p>秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ雑誌,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088T6X8ZV?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51n5XON61VL.jpg" class="mr-3" alt="フダンシズム　腐男子主義　４ (エンペラーズコミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>フダンシズム　腐男子主義　４ (エンペラーズコミックス)</h5>
+                    <p>価格：660円</p>
+                    <p>もりしげ(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：コミック,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RCR76B?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/61vPv8wADuL.jpg" class="mr-3" alt="家族と恋愛するのは変ですか？ (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>家族と恋愛するのは変ですか？ (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>みやもと留美(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RCJ1LY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51EpvRTSHYL.jpg" class="mr-3" alt="ペット契約で借金返済します。 (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ペット契約で借金返済します。 (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>みやもと留美(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RCD7MD?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/514ONVv4B1L.jpg" class="mr-3" alt="DEATH ANGEL ６ (エンペラーズコミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>DEATH ANGEL ６ (エンペラーズコミックス)</h5>
+                    <p>価格：110円</p>
+                    <p>EroticThink(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：コミック,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088RCD226?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/514nLa4kkEL.jpg" class="mr-3" alt="イチャぽちゃ！ (ジューシーラブ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>イチャぽちゃ！ (ジューシーラブ)</h5>
+                    <p>価格：1100円</p>
+                    <p>茸山しめじ(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088QZVDR3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/414HXBMAJrL.jpg" class="mr-3" alt="人妻の叔母さんは僕だけの家庭教師"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>人妻の叔母さんは僕だけの家庭教師</h5>
+                    <p>価格：440円</p>
+                    <p>カワバター(著)</p>
+                    <p>ミネルバ</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088KLMWVY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51992piyvNL.jpg" class="mr-3" alt="鬼畜男に追い回され野外レ○プされたOL"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>鬼畜男に追い回され野外レ○プされたOL</h5>
+                    <p>価格：440円</p>
+                    <p>ガールズラブボイス(著)</p>
+                    <p>ミネルバ</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088GMY4B3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51M+ZQ10o9L.jpg" class="mr-3" alt="即採用！ 偏差値激高75！ 米国史上もっとも知的で魅力的な天才理系黒人美女がまさかのデビュー！ Complete版 (ビッグモーカル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>即採用！ 偏差値激高75！ 米国史上もっとも知的で魅力的な天才理系黒人美女がまさかのデビュー！ Complete版 (ビッグモーカル)</h5>
+                    <p>価格：1980円</p>
+                    <p>ビッグモーカル(著)</p>
+                    <p>ＴＭＥプラス</p>
+<p>カテゴリー：アダルト,写真集</p>
+                    <a href="https://www.amazon.co.jp/dp/B086MW6ZN2?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="なし" class="mr-3" alt="ヤングキングアワーズ 2020年 08月号 [雑誌]"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ヤングキングアワーズ 2020年 08月号 [雑誌]</h5>
+                    <p>価格：570円</p>
+                    <p>ヤングキングアワーズ編集部(著)</p>
+                    <p>少年画報社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ雑誌,歴史,SF</p>
+                    <a href="https://www.amazon.co.jp/dp/B088W5ZD66?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="鬼滅の刃 21 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>鬼滅の刃 21 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>吾峠呼世晴(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YKRVMX?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="約束のネバーランド 19 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>約束のネバーランド 19 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：481円</p>
+                    <p>白井カイウ(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088Y9MJQY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="Dr.STONE 16 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>Dr.STONE 16 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>稲垣理一郎(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YMN5ZS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="アクタージュ act-age 12 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>アクタージュ act-age 12 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>マツキタツヤ(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YF2DZF?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="僕のヒーローアカデミア 27 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>僕のヒーローアカデミア 27 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>堀越耕平(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B087CJB2BZ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="魔都精兵のスレイブ 5 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>魔都精兵のスレイブ 5 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：502円</p>
+                    <p>タカヒロ(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YTMXZ1?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="ブラッククローバー 25 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ブラッククローバー 25 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>田畠裕基(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YXV4VF?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="2.5次元の誘惑 5 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>2.5次元の誘惑 5 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：627円</p>
+                    <p>橋本悠(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YLPYGC?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="怪物事変 11 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>怪物事変 11 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：502円</p>
+                    <p>藍本松(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YY91WM?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="憂国のモリアーティ 12 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>憂国のモリアーティ 12 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：502円</p>
+                    <p>コナン・ドイル(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088ZB6ZDM?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="ド級編隊エグゼロス 10 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ド級編隊エグゼロス 10 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：502円</p>
+                    <p>きただりょうま(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YWDH69?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="道産子ギャルはなまらめんこい 3 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>道産子ギャルはなまらめんこい 3 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：627円</p>
+                    <p>伊科田海(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YT957L?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="双星の陰陽師 22 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>双星の陰陽師 22 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：502円</p>
+                    <p>助野嘉昭(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YGYX3C?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="悪魔のメムメムちゃん 10 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>悪魔のメムメムちゃん 10 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>四谷啓太郎(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B087CG9662?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="AGRAVITY BOYS 2 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>AGRAVITY BOYS 2 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>中村充志(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YWC66K?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="2.5次元の誘惑 セミカラー版 5 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>2.5次元の誘惑 セミカラー版 5 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：737円</p>
+                    <p>橋本悠(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088Z787KL?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="ブラッククローバー外伝 カルテットナイツ 5 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ブラッククローバー外伝 カルテットナイツ 5 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>田代弓也(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YKWF5R?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="むとうとさとう 5 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>むとうとさとう 5 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：659円</p>
+                    <p>赤塚大将(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YT4KK5?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="ヒナちゃんチェンジ 3 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ヒナちゃんチェンジ 3 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：680円</p>
+                    <p>梶川岳(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YZYPDS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="Mr.Clice 9 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>Mr.Clice 9 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：481円</p>
+                    <p>秋本治(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YVQHPB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="昭和オトメ御伽話 5 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>昭和オトメ御伽話 5 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>桐丘さな(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YKPD7R?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="男坂 9 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>男坂 9 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：502円</p>
+                    <p>車田正美(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088Z8NNPJ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="荒野のコトブキ飛行隊 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>荒野のコトブキ飛行隊 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：460円</p>
+                    <p>田岡宗晃(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YGYXF3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="恋獄の都市 セミカラー版 3 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>恋獄の都市 セミカラー版 3 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：737円</p>
+                    <p>俵京平(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0894JZSM7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="奴隷遊戯 GUREN 1 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>奴隷遊戯 GUREN 1 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：627円</p>
+                    <p>ヤマイナナミ(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088Z8NV8R?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="さっちゃん、僕は。 3 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>さっちゃん、僕は。 3 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：659円</p>
+                    <p>朝賀庵(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088Z21FTY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="奴隷遊戯 GUREN 2 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>奴隷遊戯 GUREN 2 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：627円</p>
+                    <p>ヤマイナナミ(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YMXQ9K?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31RxWIPH+cL.jpg" class="mr-3" alt="お迎えに上がりました。～国土交通省国土政策局 幽冥推進課～ 3 (ジャンプコミックスDIGITAL)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>お迎えに上がりました。～国土交通省国土政策局 幽冥推進課～ 3 (ジャンプコミックスDIGITAL)</h5>
+                    <p>価格：680円</p>
+                    <p>竹林七草(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック,少年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088YF2DZH?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31GKT2YMfUL.jpg" class="mr-3" alt="りぼん 2020年8月号 電子版 りぼん電子版"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>りぼん 2020年8月号 電子版 りぼん電子版</h5>
+                    <p>価格：510円</p>
+                    <p>りぼん編集部(著)</p>
+                    <p>集英社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B088Z1ZTFL?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
