@@ -1,6 +1,6 @@
             $(function () {
                 $('#datetimepicker1').datetimepicker({
-               minDate:'2020/04/01',
+               minDate:'2020/03/01',
                maxDate:'2020/08/31',
 //               disabledDates:['2020/07/26'],
             dayViewHeaderFormat: 'YYYY年 MMMM',
