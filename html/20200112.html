@@ -1,0 +1,611 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_epub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="キンドルの新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェック">
+<meta name="twitter:description" content="キンドルの新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg">
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙版</a>
+                  </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+                </form>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+<div class="nondisplayFrame">
+        <h2 class="alert alert-success">カテゴリの選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='adult' type="button" class="btn btn-outline-secondary">アダルト</button>
+<button id='bl' type="button" class="btn btn-outline-success">BL</button>
+<button id='business' type="button" class="btn btn-outline-danger">ビジネス・経済</button>
+<button id='other' type="button" class="btn btn-outline-warning">その他</button>
+<button id='hobby' type="button" class="btn btn-outline-info">趣味・実用</button>
+<button id='literature'  type="button" class="btn btn-outline-dark">文学・評論</button>
+<button id='picturebook' type="button" class="btn btn-outline-primary">絵本・児童書</button>
+</div>
+<style type="text/css">
+.nondisplayFrame {
+  display:inline;
+}
+</style>
+<!-- 
+後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">20200112の新刊</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41UoaqMnyiL.jpg" class="mr-3" alt="回遊人 (徳間文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>回遊人 (徳間文庫)</h5>
+                    <p>価格：759円</p>
+                    <p>吉村萬壱(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：日本文学,126-150回,徳間書店,Featured Categories</p>
+                    <a href="https://www.amazon.co.jp/dp/4198945306?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51UTN5aC61L.jpg" class="mr-3" alt="ひぐらし武士道 大江戸剣花帳上 〈新装版〉 (徳間文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ひぐらし武士道 大江戸剣花帳上 〈新装版〉 (徳間文庫)</h5>
+                    <p>価格：803円</p>
+                    <p>門田泰明(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：歴史・時代小説,徳間書店,Featured Categories</p>
+                    <a href="https://www.amazon.co.jp/dp/419894525X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51S9hEFfqoL.jpg" class="mr-3" alt="ひぐらし武士道 大江戸剣花帳下 〈新装版〉 (徳間文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ひぐらし武士道 大江戸剣花帳下 〈新装版〉 (徳間文庫)</h5>
+                    <p>価格：759円</p>
+                    <p>門田泰明(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：歴史・時代小説,徳間書店,Featured Categories</p>
+                    <a href="https://www.amazon.co.jp/dp/4198945268?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51qGhMuolaL.jpg" class="mr-3" alt="魔王の子、鬼の娘 (徳間文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>魔王の子、鬼の娘 (徳間文庫)</h5>
+                    <p>価格：770円</p>
+                    <p>仁木英之(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：歴史・時代小説,徳間書店,Featured Categories</p>
+                    <a href="https://www.amazon.co.jp/dp/4198945284?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41fr7vQAgxL.jpg" class="mr-3" alt="ウォッシュバーンさんがいえからでない13のりゆう"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ウォッシュバーンさんがいえからでない13のりゆう</h5>
+                    <p>価格：1650円</p>
+                    <p>那生, 高畠(イラスト)</p>
+                    <p>文溪堂</p>
+<p>カテゴリー：絵本</p>
+                    <a href="https://www.amazon.co.jp/dp/4799903403?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51DpErqxyWL.jpg" class="mr-3" alt="この問題、とけますか? ~チャレンジ難問篇~ (だいわ文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>この問題、とけますか? ~チャレンジ難問篇~ (だいわ文庫)</h5>
+                    <p>価格：715円</p>
+                    <p>吉田 敬一(著)</p>
+                    <p>大和書房</p>
+<p>カテゴリー：雑学・クイズ,大和書房,Featured Categories</p>
+                    <a href="https://www.amazon.co.jp/dp/4479307966?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/418fyJ0YRiL.jpg" class="mr-3" alt="ファインマン講義 重力の理論 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ファインマン講義 重力の理論 (岩波オンデマンドブックス)</h5>
+                    <p>価格：6270円</p>
+                    <p>和田純夫(翻訳)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：理論物理学</p>
+                    <a href="https://www.amazon.co.jp/dp/4007308225?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Dh-T56iJL.jpg" class="mr-3" alt="開化風俗誌集 (新日本古典文学大系 明治編1)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>開化風俗誌集 (新日本古典文学大系 明治編1)</h5>
+                    <p>価格：8910円</p>
+                    <p>日野龍夫(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309639?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31DXVg3t4vL.jpg" class="mr-3" alt="岩波基礎数学選書 環と加群 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波基礎数学選書 環と加群 (岩波オンデマンドブックス)</h5>
+                    <p>価格：11550円</p>
+                    <p>山﨑圭次郎(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309728?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41mYcoszjoL.jpg" class="mr-3" alt="岩波講座 東アジア近現代通史 第6巻アジア太平洋戦争と「大東亜共栄圏」1935−1945年 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波講座 東アジア近現代通史 第6巻アジア太平洋戦争と「大東亜共栄圏」1935−1945年 (岩波オンデマンドブックス)</h5>
+                    <p>価格：8250円</p>
+                    <p>和田春樹(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309647?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41tbDBc-nXL.jpg" class="mr-3" alt="現代数学への入門 現代解析学への誘い (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 現代解析学への誘い (岩波オンデマンドブックス)</h5>
+                    <p>価格：2970円</p>
+                    <p>俣野博(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309701?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31Srv3CyjxL.jpg" class="mr-3" alt="中世法制史料集 第六巻公家法 公家家法 寺社法 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>中世法制史料集 第六巻公家法 公家家法 寺社法 (岩波オンデマンドブックス)</h5>
+                    <p>価格：13200円</p>
+                    <p>佐藤進一(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309663?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41mjYokT0yL.jpg" class="mr-3" alt="現代数学への入門 微分と積分2 多変数への広がり (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 微分と積分2 多変数への広がり (岩波オンデマンドブックス)</h5>
+                    <p>価格：2750円</p>
+                    <p>高橋陽一郎(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309698?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41qI96bS4oL.jpg" class="mr-3" alt="現代数学への入門 力学と微分方程式 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 力学と微分方程式 (岩波オンデマンドブックス)</h5>
+                    <p>価格：3080円</p>
+                    <p>高橋陽一郎(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/400730971X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41Mc2fRSZqL.jpg" class="mr-3" alt="初等代数幾何講義 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>初等代数幾何講義 (岩波オンデマンドブックス)</h5>
+                    <p>価格：5940円</p>
+                    <p>若林功(翻訳)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309736?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31+uMgp6A0L.jpg" class="mr-3" alt="岩波テキストブックス 平和研究講義 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波テキストブックス 平和研究講義 (岩波オンデマンドブックス)</h5>
+                    <p>価格：2530円</p>
+                    <p>高畠通敏(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309671?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31wKtq45ASL.jpg" class="mr-3" alt="岩波講座「帝国」日本の学知 第3巻 東洋学の磁場 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波講座「帝国」日本の学知 第3巻 東洋学の磁場 (岩波オンデマンドブックス)</h5>
+                    <p>価格：8030円</p>
+                    <p>岸本美緒(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309655?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41w8rt2CsjL.jpg" class="mr-3" alt="現代数学への入門 微分と積分1 初等関数を中心に (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 微分と積分1 初等関数を中心に (岩波オンデマンドブックス)</h5>
+                    <p>価格：2860円</p>
+                    <p>青本和彦(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/400730968X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41vIxPZ1lRL.jpg" class="mr-3" alt="ファインマン計算機科学 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ファインマン計算機科学 (岩波オンデマンドブックス)</h5>
+                    <p>価格：6490円</p>
+                    <p>原康夫(翻訳)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：情報学・情報科学</p>
+                    <a href="https://www.amazon.co.jp/dp/4007308217?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/313LITf4X8L.jpg" class="mr-3" alt="乳母車・最後の女 石坂洋次郎傑作短編選 (講談社文芸文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>乳母車・最後の女 石坂洋次郎傑作短編選 (講談社文芸文庫)</h5>
+                    <p>価格：2090円</p>
+                    <p>石坂 洋次郎(著)</p>
+                    <p>講談社</p>
+<p>カテゴリー：日本文学,講談社,Featured Categories</p>
+                    <a href="https://www.amazon.co.jp/dp/4065186021?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51bMNq+m-wL.jpg" class="mr-3" alt="政権交代が必要なのは、総理が嫌いだからじゃないーー私たちが人口減少、経済成熟、気候変動に対応するために"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>政権交代が必要なのは、総理が嫌いだからじゃないーー私たちが人口減少、経済成熟、気候変動に対応するために</h5>
+                    <p>価格：1870円</p>
+                    <p>田中信一郎(著)</p>
+                    <p>現代書館</p>
+<p>カテゴリー：政治入門,議会・国会,現代書館</p>
+                    <a href="https://www.amazon.co.jp/dp/4768458726?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51LOW+WTM-L.jpg" class="mr-3" alt="上野先生、フェミニズムについてゼロから教えてください!"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>上野先生、フェミニズムについてゼロから教えてください!</h5>
+                    <p>価格：1650円</p>
+                    <p>上野 千鶴子(著)</p>
+                    <p>大和書房</p>
+<p>カテゴリー：フェミニズム,社会学概論,大和書房</p>
+                    <a href="https://www.amazon.co.jp/dp/4479393323?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51fN5aQuZ0L.jpg" class="mr-3" alt="小・中・高等学校 総合的な学習・探究の時間の指導 -新学習指導要領に準拠した理論と実践-"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>小・中・高等学校 総合的な学習・探究の時間の指導 -新学習指導要領に準拠した理論と実践-</h5>
+                    <p>価格：1760円</p>
+                    <p>中園 大三郎(著)</p>
+                    <p>学術研究出版/ブックウェイ</p>
+<p>カテゴリー：教育学</p>
+                    <a href="https://www.amazon.co.jp/dp/4865843787?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/418fyJ0YRiL.jpg" class="mr-3" alt="ファインマン講義 重力の理論 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ファインマン講義 重力の理論 (岩波オンデマンドブックス)</h5>
+                    <p>価格：6270円</p>
+                    <p>和田純夫(翻訳)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：理論物理学</p>
+                    <a href="https://www.amazon.co.jp/dp/4007308225?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Dh-T56iJL.jpg" class="mr-3" alt="開化風俗誌集 (新日本古典文学大系 明治編1)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>開化風俗誌集 (新日本古典文学大系 明治編1)</h5>
+                    <p>価格：8910円</p>
+                    <p>日野龍夫(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309639?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31DXVg3t4vL.jpg" class="mr-3" alt="岩波基礎数学選書 環と加群 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波基礎数学選書 環と加群 (岩波オンデマンドブックス)</h5>
+                    <p>価格：11550円</p>
+                    <p>山﨑圭次郎(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309728?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41mYcoszjoL.jpg" class="mr-3" alt="岩波講座 東アジア近現代通史 第6巻アジア太平洋戦争と「大東亜共栄圏」1935−1945年 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波講座 東アジア近現代通史 第6巻アジア太平洋戦争と「大東亜共栄圏」1935−1945年 (岩波オンデマンドブックス)</h5>
+                    <p>価格：8250円</p>
+                    <p>和田春樹(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309647?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41tbDBc-nXL.jpg" class="mr-3" alt="現代数学への入門 現代解析学への誘い (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 現代解析学への誘い (岩波オンデマンドブックス)</h5>
+                    <p>価格：2970円</p>
+                    <p>俣野博(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309701?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31Srv3CyjxL.jpg" class="mr-3" alt="中世法制史料集 第六巻公家法 公家家法 寺社法 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>中世法制史料集 第六巻公家法 公家家法 寺社法 (岩波オンデマンドブックス)</h5>
+                    <p>価格：13200円</p>
+                    <p>佐藤進一(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309663?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41mjYokT0yL.jpg" class="mr-3" alt="現代数学への入門 微分と積分2 多変数への広がり (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 微分と積分2 多変数への広がり (岩波オンデマンドブックス)</h5>
+                    <p>価格：2750円</p>
+                    <p>高橋陽一郎(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309698?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41qI96bS4oL.jpg" class="mr-3" alt="現代数学への入門 力学と微分方程式 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現代数学への入門 力学と微分方程式 (岩波オンデマンドブックス)</h5>
+                    <p>価格：3080円</p>
+                    <p>高橋陽一郎(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/400730971X?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41Mc2fRSZqL.jpg" class="mr-3" alt="初等代数幾何講義 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>初等代数幾何講義 (岩波オンデマンドブックス)</h5>
+                    <p>価格：5940円</p>
+                    <p>若林功(翻訳)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309736?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31+uMgp6A0L.jpg" class="mr-3" alt="岩波テキストブックス 平和研究講義 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波テキストブックス 平和研究講義 (岩波オンデマンドブックス)</h5>
+                    <p>価格：2530円</p>
+                    <p>高畠通敏(著)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309671?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/31wKtq45ASL.jpg" class="mr-3" alt="岩波講座「帝国」日本の学知 第3巻 東洋学の磁場 (岩波オンデマンドブックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>岩波講座「帝国」日本の学知 第3巻 東洋学の磁場 (岩波オンデマンドブックス)</h5>
+                    <p>価格：8030円</p>
+                    <p>岸本美緒(編集)</p>
+                    <p>岩波書店</p>
+<p>カテゴリー：ジャンル別</p>
+                    <a href="https://www.amazon.co.jp/dp/4007309655?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
