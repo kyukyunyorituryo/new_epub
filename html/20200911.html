@@ -1,0 +1,1318 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_epub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="キンドルの新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェック">
+<meta name="twitter:description" content="キンドルの新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg">
+<link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_epub/">kindle新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙の新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/kindle_sale/">kindleセール</a>
+                  </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">絞り込み検索</h2>
+        <p>著者名、タイトル、カテゴリなどから絞り込みができます。</p>
+                <div class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" id="searchtext" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"  id="search">検索</button>
+                </div>
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+<div class="nondisplayFrame">
+        <h2 class="alert alert-success">カテゴリの選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='adult' type="button" class="btn btn-outline-secondary">アダルト</button>
+<button id='bl' type="button" class="btn btn-outline-success">BL</button>
+<button id='business' type="button" class="btn btn-outline-danger">ビジネス・経済</button>
+<button id='other' type="button" class="btn btn-outline-warning">その他</button>
+<button id='hobby' type="button" class="btn btn-outline-info">趣味・実用</button>
+<button id='literature'  type="button" class="btn btn-outline-dark">文学・評論</button>
+<button id='picturebook' type="button" class="btn btn-outline-primary">絵本・児童書</button>
+</div>
+<style type="text/css">
+.nondisplayFrame {
+  display:inline;
+}
+</style>
+<!-- 
+後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">20200911の新刊</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="なし" class="mr-3" alt="【小説24巻】本好きの下剋上～司書になるためには手段を選んでいられません～第五部「女神の化身III」 (TOブックスラノベ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>【小説24巻】本好きの下剋上～司書になるためには手段を選んでいられません～第五部「女神の化身III」 (TOブックスラノベ)</h5>
+                    <p>価格：1010円</p>
+                    <p>香月美夜(著)</p>
+                    <p>TOブックス</p>
+<p>カテゴリー：ジャンル別,TOブックス,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B08C52JTWQ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51FwI8H48bL.jpg" class="mr-3" alt="穏やか貴族の休暇のすすめ。10【電子書籍限定書き下ろしＳＳ付き】 (TOブックスラノベ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>穏やか貴族の休暇のすすめ。10【電子書籍限定書き下ろしＳＳ付き】 (TOブックスラノベ)</h5>
+                    <p>価格：1199円</p>
+                    <p>岬(著)</p>
+                    <p>TOブックス</p>
+<p>カテゴリー：ジャンル別,TOブックス,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B08C4XS82D?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="なし" class="mr-3" alt="腐男子召喚～異世界で神獣にハメられました～ ： 2 【電子コミック限定特典付き】 (コミックマージナル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>腐男子召喚～異世界で神獣にハメられました～ ： 2 【電子コミック限定特典付き】 (コミックマージナル)</h5>
+                    <p>価格：770円</p>
+                    <p>藤咲もえ(著)</p>
+                    <p>双葉社</p>
+<p>カテゴリー：コミック,マンガ,ボーイズラブマンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CMDZPYD?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51ekoUhs3mL.jpg" class="mr-3" alt="たかが子爵嫡男に高貴な人たちがグイグイきて困る【電子書籍限定書き下ろしSS付き】"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>たかが子爵嫡男に高貴な人たちがグイグイきて困る【電子書籍限定書き下ろしSS付き】</h5>
+                    <p>価格：1199円</p>
+                    <p>あぐにゅん(著)</p>
+                    <p>TOブックス</p>
+<p>カテゴリー：ジャンル別,TOブックス,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CXK5L7P?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51wZOvqyqkL.jpg" class="mr-3" alt="追放された万能魔法剣士は、皇女殿下の師匠となる【電子書籍限定書き下ろしSS付き】"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>追放された万能魔法剣士は、皇女殿下の師匠となる【電子書籍限定書き下ろしSS付き】</h5>
+                    <p>価格：1079円</p>
+                    <p>軽井広(著)</p>
+                    <p>TOブックス</p>
+<p>カテゴリー：ジャンル別,TOブックス,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CXMB2MY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51a4xajyrrL.jpg" class="mr-3" alt="俺の身体はなんで女なんだ？ 7 (ヤング宣言)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>俺の身体はなんで女なんだ？ 7 (ヤング宣言)</h5>
+                    <p>価格：165円</p>
+                    <p>苺野しずく(著)</p>
+                    <p>秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,ファンタジー</p>
+                    <a href="https://www.amazon.co.jp/dp/B08D38CQBQ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="なし" class="mr-3" alt="増補改訂版 やさしいフランス語カタコト会話帳 【カタコト会話帳シリーズ】"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>増補改訂版 やさしいフランス語カタコト会話帳 【カタコト会話帳シリーズ】</h5>
+                    <p>価格：1320円</p>
+                    <p>藤井 秀男(著)</p>
+                    <p>すばる舎</p>
+<p>カテゴリー：ジャンル別,言語学</p>
+                    <a href="https://www.amazon.co.jp/dp/B08DCK5Z82?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51eoVo3HqzL.jpg" class="mr-3" alt="ヤング宣言 Vol.24"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ヤング宣言 Vol.24</h5>
+                    <p>価格：330円</p>
+                    <p>東條仁(著)</p>
+                    <p>秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ雑誌</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CR382B1?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51B9v24+SaL.jpg" class="mr-3" alt="解禁 29巻 (Rush!)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>解禁 29巻 (Rush!)</h5>
+                    <p>価格：198円</p>
+                    <p>ドクハク(著)</p>
+                    <p>Rush！</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B0887ZZBSR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Ww3jYu0IL.jpg" class="mr-3" alt="インテリ極道の甘い調教 5 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教 5 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGPXXCS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/518XqGPPy0L.jpg" class="mr-3" alt="純愛エロチカ 彼と兄と私のイケない三角関係 4 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>純愛エロチカ 彼と兄と私のイケない三角関係 4 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>神奈アズミ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGXDRF9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51LB3RCZ58L.jpg" class="mr-3" alt="衝撃！あの韓流プロゴルファーAV出演。スポーツ飲料のCMにも出演した、さわやか笑顔で韓国男子を虜にした好感度NO.1ゴルファーがまさかのデビュー！ Complete版 (ビッグモーカル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>衝撃！あの韓流プロゴルファーAV出演。スポーツ飲料のCMにも出演した、さわやか笑顔で韓国男子を虜にした好感度NO.1ゴルファーがまさかのデビュー！ Complete版 (ビッグモーカル)</h5>
+                    <p>価格：1980円</p>
+                    <p>ビッグモーカル(著)</p>
+                    <p>ＴＭＥプラス</p>
+<p>カテゴリー：アダルト,写真集</p>
+                    <a href="https://www.amazon.co.jp/dp/B086MV6HZ3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41HPETfEGOL.jpg" class="mr-3" alt="真夜中の主婦4 (素敵なロマンス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>真夜中の主婦4 (素敵なロマンス)</h5>
+                    <p>価格：165円</p>
+                    <p>美紗登(著)</p>
+                    <p>秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,ロマンス</p>
+                    <a href="https://www.amazon.co.jp/dp/B08D3F9D2T?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51uddMrt53L.jpg" class="mr-3" alt="キスよりも深く 幼なじみの焦らしテク (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>キスよりも深く 幼なじみの焦らしテク (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CH4FGR3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51sup3I2puL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 3 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 3 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CH3CKKS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/519wjG4V5KL.jpg" class="mr-3" alt="小悪魔気分 えっちな本音をささやいて コスプレ喫茶シリーズ2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>小悪魔気分 えっちな本音をささやいて コスプレ喫茶シリーズ2 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CH2HYPM?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Vu9uGZf3L.jpg" class="mr-3" alt="ご主人様と愛人カンケイ～危険な誘惑～ (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ご主人様と愛人カンケイ～危険な誘惑～ (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CH1D1F3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51TudgpLKIL.jpg" class="mr-3" alt="インテリ極道の甘い調教【完全版】2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教【完全版】2 (恋愛楽園PURE)</h5>
+                    <p>価格：715円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CH16ZZZ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51MwBdUPHpL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 4 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 4 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGYTLK9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51dAUjobhRL.jpg" class="mr-3" alt="純愛エロチカ 彼と兄と私のイケない三角関係【完全版】 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>純愛エロチカ 彼と兄と私のイケない三角関係【完全版】 (恋愛楽園PURE)</h5>
+                    <p>価格：1100円</p>
+                    <p>神奈アズミ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGYS2RG?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51NvexqfDHL.jpg" class="mr-3" alt="インテリ極道の甘い調教 6 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教 6 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGYPWYT?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51B6phwWppL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 7 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 7 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGYBG69?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51MpMPQoHCL.jpg" class="mr-3" alt="あなただけの体温 ナカまで熱く愛して【完全版】 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>あなただけの体温 ナカまで熱く愛して【完全版】 (恋愛楽園PURE)</h5>
+                    <p>価格：1210円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGX7633?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/5135N7XIIML.jpg" class="mr-3" alt="純愛エロチカ 彼と兄と私のイケない三角関係 1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>純愛エロチカ 彼と兄と私のイケない三角関係 1 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>神奈アズミ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGX2CK7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51D6v3Vfi0L.jpg" class="mr-3" alt="ないしょの家庭内恋愛 兄×私×弟で何度も…イクっ！【完全版】2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ないしょの家庭内恋愛 兄×私×弟で何度も…イクっ！【完全版】2 (恋愛楽園PURE)</h5>
+                    <p>価格：880円</p>
+                    <p>松本ゆうか(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGWZB1V?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/511YFaHLSBL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 2 (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGWRCYY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51LS279nFuL.jpg" class="mr-3" alt="カリスマスタイリストの極上テクニック (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>カリスマスタイリストの極上テクニック (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGWKVSZ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51+CmvOPxDL.jpg" class="mr-3" alt="えっちなごほうび捧げます!? 私のカラダはふたりのもの【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>えっちなごほうび捧げます!? 私のカラダはふたりのもの【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：715円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGW8S16?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51CCMTWKXdL.jpg" class="mr-3" alt="インテリ極道の甘い調教【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：660円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGW8F5C?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/5197KmwhOgL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました【完全版】2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました【完全版】2 (恋愛楽園PURE)</h5>
+                    <p>価格：880円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGW13JG?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51KI9F5U29L.jpg" class="mr-3" alt="インテリ極道の甘い調教 2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教 2 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGVLB6B?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51isVrN3TnL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ【完全版】2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ【完全版】2 (恋愛楽園PURE)</h5>
+                    <p>価格：660円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGV5JNY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51wSE5VyD1L.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：880円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGV4X5S?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51zPYoCRVTL.jpg" class="mr-3" alt="オレ様幼なじみの強引な愛撫 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>オレ様幼なじみの強引な愛撫 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGTJNF2?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51+KT4wmC4L.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 2 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGT5CYQ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51NfC2ivylL.jpg" class="mr-3" alt="えっちな彼氏にピンクのシルシつけられました (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>えっちな彼氏にピンクのシルシつけられました (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGSVRMG?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51z9ty82xkL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 5 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 5 (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGS14CK?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51K22Ao6uML.jpg" class="mr-3" alt="インテリ極道の甘い調教 1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教 1 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGRWXHL?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/517luhmartL.jpg" class="mr-3" alt="やらしいにゃんこに欲情してる (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>やらしいにゃんこに欲情してる (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGRJ8GR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51rwHlI3khL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 6 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 6 (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGRDGCS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/512m1cbyhlL.jpg" class="mr-3" alt="ガテン農家の楽園H 奥からあふれてとまらないっ！ (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ガテン農家の楽園H 奥からあふれてとまらないっ！ (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGRBFG9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51kqtDZx+wL.jpg" class="mr-3" alt="純愛エロチカ 彼と兄と私のイケない三角関係 2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>純愛エロチカ 彼と兄と私のイケない三角関係 2 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>神奈アズミ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGR1CC8?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Muo59mFcL.jpg" class="mr-3" alt="ホントにあったエッチな恋の話【完全版】 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ホントにあったエッチな恋の話【完全版】 (恋愛楽園PURE)</h5>
+                    <p>価格：660円</p>
+                    <p>望月蜜桃(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGQRS3Z?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51yyXFTcn4L.jpg" class="mr-3" alt="抱いて欲しいの 地味な彼のテクニック (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>抱いて欲しいの 地味な彼のテクニック (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGQDYS6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51CLBiUQlGL.jpg" class="mr-3" alt="獣王子と囚われ姫【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>獣王子と囚われ姫【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：605円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGQ6ZDW?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51L8YJ8+nfL.jpg" class="mr-3" alt="恋するフェロモン 全部支配して (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>恋するフェロモン 全部支配して (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGQ61XP?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51MXSPG4AlL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 8 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 8 (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGPZCHF?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/510TmWtUTbL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：715円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGPP51G?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51G5fn8-OqL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 6 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 6 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGPMSNB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51txvFanUEL.jpg" class="mr-3" alt="獣王子と囚われ姫【完全版】2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>獣王子と囚われ姫【完全版】2 (恋愛楽園PURE)</h5>
+                    <p>価格：660円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGP8XBN?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51CES9zdZgL.jpg" class="mr-3" alt="インテリ極道の甘い調教 4 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教 4 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGP4GJ8?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51YhK1UaAaL.jpg" class="mr-3" alt="クールな彼のじっくり個人指導!? オレのテクでイっちゃえよ (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>クールな彼のじっくり個人指導!? オレのテクでイっちゃえよ (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>松本ゆうか(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGNS3GK?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/518mYVWdGxL.jpg" class="mr-3" alt="おとうとオオカミの極甘愛撫【完全版】2 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>おとうとオオカミの極甘愛撫【完全版】2 (恋愛楽園PURE)</h5>
+                    <p>価格：770円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGNQMX4?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51eRxaycAzL.jpg" class="mr-3" alt="ずっと抱きしめて 初恋相手と極トロえっち (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ずっと抱きしめて 初恋相手と極トロえっち (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGNCMMT?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51600mtJBvL.jpg" class="mr-3" alt="インテリ極道の甘い調教 3 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>インテリ極道の甘い調教 3 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGMNRTJ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51RLTkrmEzL.jpg" class="mr-3" alt="ねこ好き彼に甘い鳴き声 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ねこ好き彼に甘い鳴き声 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGMJF61?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51joU2GkTZL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 4 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 4 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGMFMYV?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51ir7Z6Q+nL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 1 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGMFMYT?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51oV27WylPL.jpg" class="mr-3" alt="御曹司の溺愛指導 アゲ嬢たちの官能ナイト【完全版】 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>御曹司の溺愛指導 アゲ嬢たちの官能ナイト【完全版】 (恋愛楽園PURE)</h5>
+                    <p>価格：605円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGLSR4F?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51SWtcRb8NL.jpg" class="mr-3" alt="抱いてヴァージンラブ やさしく奪って (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>抱いてヴァージンラブ やさしく奪って (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>松本ゆうか(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGLQ6G6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51szXt5eBKL.jpg" class="mr-3" alt="濡れちゃうマミィ 衣装の下はあなただけに コスプレ喫茶シリーズ3 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>濡れちゃうマミィ 衣装の下はあなただけに コスプレ喫茶シリーズ3 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGLKWVW?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51eNioj2fvL.jpg" class="mr-3" alt="純愛エロチカ 彼と兄と私のイケない三角関係 3 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>純愛エロチカ 彼と兄と私のイケない三角関係 3 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>神奈アズミ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGLGR4L?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51ieREQAryL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 3 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 3 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGKC42N?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51TbjE90AWL.jpg" class="mr-3" alt="熱くてトロトロ 書道家の彼とごほうびえっち (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>熱くてトロトロ 書道家の彼とごほうびえっち (恋愛楽園PURE)</h5>
+                    <p>価格：275円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGJW9S1?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51a40vapOHL.jpg" class="mr-3" alt="いじわるなくちびる 教育係にじっくり調教されました 5 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いじわるなくちびる 教育係にじっくり調教されました 5 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>はづき佑衣(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGJG66C?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51CSNVFgW5L.jpg" class="mr-3" alt="純愛エロチカ 彼と兄と私のイケない三角関係 5 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>純愛エロチカ 彼と兄と私のイケない三角関係 5 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>神奈アズミ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGHT34P?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51jtUhPwIHL.jpg" class="mr-3" alt="おとうとオオカミの極甘愛撫【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>おとうとオオカミの極甘愛撫【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：660円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGHPRKD?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51TFuYX+n4L.jpg" class="mr-3" alt="いやらしい指先 あたしを包み込む美容師のテクニック (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>いやらしい指先 あたしを包み込む美容師のテクニック (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGHKGJQ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51IEUoXX9iL.jpg" class="mr-3" alt="イケない関係 義兄のくちびるに愛されたいからだ (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>イケない関係 義兄のくちびるに愛されたいからだ (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>おうみ☆ねこ(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGGY6ZJ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51+u-wuvicL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 7 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 7 (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGGVKFQ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51fJ22uU6xL.jpg" class="mr-3" alt="吸血鬼のみだらな食卓 飼いならされるカラダ 1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>吸血鬼のみだらな食卓 飼いならされるカラダ 1 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>水原冬樹(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGGSMYH?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Jxse+nfLL.jpg" class="mr-3" alt="おとうとオオカミの極甘愛撫 8 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>おとうとオオカミの極甘愛撫 8 (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>浜田理枝子(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGGHJT5?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51QFTyr7oxL.jpg" class="mr-3" alt="ないしょの家庭内恋愛 兄×私×弟で何度も…イクっ！【完全版】1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ないしょの家庭内恋愛 兄×私×弟で何度も…イクっ！【完全版】1 (恋愛楽園PURE)</h5>
+                    <p>価格：880円</p>
+                    <p>松本ゆうか(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGFH1CF?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51b28NG8OKL.jpg" class="mr-3" alt="欲情おぼっちゃまと淫らなメイド (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>欲情おぼっちゃまと淫らなメイド (恋愛楽園PURE)</h5>
+                    <p>価格：165円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGCRTB3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Q7BXxHSAL.jpg" class="mr-3" alt="溺愛天使 はじめての快感 コスプレ喫茶シリーズ1 (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>溺愛天使 はじめての快感 コスプレ喫茶シリーズ1 (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>福田りお(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGCKBVV?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51q-Dx0gfyL.jpg" class="mr-3" alt="そこはダメッ!! 有能ドクターにご奉仕ナース (恋愛楽園PURE)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>そこはダメッ!! 有能ドクターにご奉仕ナース (恋愛楽園PURE)</h5>
+                    <p>価格：220円</p>
+                    <p>松本ゆうか(著)</p>
+                    <p>徳間書店</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CGCDTSK?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51qP1YfH9bL.jpg" class="mr-3" alt="DEATH ANGEL １６ (エンペラーズコミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>DEATH ANGEL １６ (エンペラーズコミックス)</h5>
+                    <p>価格：110円</p>
+                    <p>EroticThink(著)</p>
+                    <p>大洋図書</p>
+<p>カテゴリー：コミック,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08BRDDH3H?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51c+7VXRXfL.jpg" class="mr-3" alt="お隣の天使様にいつの間にか駄目人間にされていた件３ (GA文庫)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>お隣の天使様にいつの間にか駄目人間にされていた件３ (GA文庫)</h5>
+                    <p>価格：693円</p>
+                    <p>佐伯さん(著)</p>
+                    <p>SBクリエイティブ</p>
+<p>カテゴリー：ライトノベル,Featured Categories,ライトノベル</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CXJCZZR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51pqNoe6gvL.jpg" class="mr-3" alt="Bitter&amp;Sugar Life［1話売り］ story11 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>Bitter&amp;Sugar Life［1話売り］ story11 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>真宮圭(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CRKCHQR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51SippboeAL.jpg" class="mr-3" alt="Bitter&amp;Sugar Life［1話売り］ story12 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>Bitter&amp;Sugar Life［1話売り］ story12 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>真宮圭(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CRB6CR8?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51JMXsrbcSL.jpg" class="mr-3" alt="JKくのいちは全てを捧げたい[ばら売り]　第9話 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>JKくのいちは全てを捧げたい[ばら売り]　第9話 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>梅ちゃづけ(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDTZ3YX?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/510nCFh6r1L.jpg" class="mr-3" alt="新人漫画家、風俗嬢になる[ばら売り]　第21・22話 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>新人漫画家、風俗嬢になる[ばら売り]　第21・22話 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>エバラユカ+ふてね(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDTN24Q?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/5121K4HQOfL.jpg" class="mr-3" alt="処女先生は逃げられない！[ばら売り] battle02-03 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>処女先生は逃げられない！[ばら売り] battle02-03 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>チノハルカ(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDW7FMH?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51zXLBqFQRL.jpg" class="mr-3" alt="処女先生は逃げられない！[ばら売り] battle07 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>処女先生は逃げられない！[ばら売り] battle07 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>チノハルカ(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDW41WZ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51-YhWQT6JL.jpg" class="mr-3" alt="戦国ごはんの丸根さん[ばら売り]　第11～12話 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>戦国ごはんの丸根さん[ばら売り]　第11～12話 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>市橋イズナ(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDVS9NT?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51mI-KwuQ1L.jpg" class="mr-3" alt="処女先生は逃げられない！[ばら売り] battle01 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>処女先生は逃げられない！[ばら売り] battle01 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>チノハルカ(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDVR881?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Xi1MtJL0L.jpg" class="mr-3" alt="すぐヌけるマリアちゃん[ばら売り]　第28～30話 (ヤングアニマルコミックス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>すぐヌけるマリアちゃん[ばら売り]　第28～30話 (ヤングアニマルコミックス)</h5>
+                    <p>価格：110円</p>
+                    <p>夕月優(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,青年マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDVQ3JR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/511LOW0dPKL.jpg" class="mr-3" alt="処女先生は逃げられない！[ばら売り] battle06 (花とゆめコミックススペシャル)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>処女先生は逃げられない！[ばら売り] battle06 (花とゆめコミックススペシャル)</h5>
+                    <p>価格：110円</p>
+                    <p>チノハルカ(著)</p>
+                    <p>白泉社</p>
+<p>カテゴリー：コミック,少女マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CDVGND9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
