@@ -1,4 +1,4 @@
-templete='            <li class="media mb-3 alert-warning ">\n  <div class="img-container--table-cell d-flex align-items-center">\n    <img src="<%= image_url %>" class="mr-3" alt="<%= title %>"/>\n  </div>\n                <div class="media-body ml-3">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p><%= contributor %></p>\n                    <p><%= publisher %></p>\n<p>カテゴリー：<%= category %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>\n                </div>\n            </li>'
+templete='            <li class="media mb-3 alert-warning ">\n  <div class="img-container--table-cell d-flex align-items-center">\n    <img src="<%= image_url %>" class="mr-3" alt="<%= title %>"/>\n  </div>\n                <div class="media-body ml-3">\n                    <h5><%= title %></h5>\n                    <p>価格：<%= price %>円</p>\n                    <p>ポイント：<%= point %></p>\n                    <p><%= contributor %></p>\n                    <p>出版社：<%= publisher %></p>\n<p>カテゴリー：<%= category %></p>\n                    <a href="<%= url %>" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>\n                </div>\n            </li>'
 
 nav=[];
 function templeterender(items){
@@ -7,6 +7,7 @@ for (let i = 0; i < items.length; i++) {
         title: items[i].Title,
         image_url: items[i].ImageURL,
         price:items[i].Price,
+        point:items[i].Point,
         url: items[i].URL,
         contributor:items[i].Contributor,
         publisher:items[i].Publisher,
@@ -212,5 +213,5 @@ json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+date+"j.json"
 getJSON(json_data)
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
-dosearch()
+//dosearch()
   });
