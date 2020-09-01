@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="新刊チェック" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_epub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="キンドルの新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="新刊チェック">
+<meta name="twitter:description" content="キンドルの新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg">
+<link rel="shortcut icon" href="../favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="../favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>新刊チェック</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_epub/">kindle新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙の新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/kindle_sale/">kindleセール</a>
+                  </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">絞り込み検索</h2>
+        <p>著者名、タイトル、カテゴリなどから絞り込みができます。</p>
+                <div class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" id="searchtext" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"  id="search">検索</button>
+                </div>
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+<div class="nondisplayFrame">
+        <h2 class="alert alert-success">カテゴリの選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='adult' type="button" class="btn btn-outline-secondary">アダルト</button>
+<button id='bl' type="button" class="btn btn-outline-success">BL</button>
+<button id='business' type="button" class="btn btn-outline-danger">ビジネス・経済</button>
+<button id='other' type="button" class="btn btn-outline-warning">その他</button>
+<button id='hobby' type="button" class="btn btn-outline-info">趣味・実用</button>
+<button id='literature'  type="button" class="btn btn-outline-dark">文学・評論</button>
+<button id='picturebook' type="button" class="btn btn-outline-primary">絵本・児童書</button>
+</div>
+<style type="text/css">
+.nondisplayFrame {
+  display:inline;
+}
+</style>
+<!-- 
+後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ img.mr-3 {
+ vertical-align: middle;
+    }
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">20201022の新刊</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="スーパーで買える肉を最高においしく食べる１００の方法"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>スーパーで買える肉を最高においしく食べる１００の方法</h5>
+                    <p>価格：1485円、ポイント：15</p>
+                    <p>長田 絢(著)</p>
+                    <p>出版社：ダイヤモンド社</p>
+<p>カテゴリー：ジャンル別,クッキング・レシピ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08G8VSRL9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="知らないと大損する！ 定年前後のお金の正解――会社も役所も教えてくれない　手取りを増やす４５のコツ"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>知らないと大損する！ 定年前後のお金の正解――会社も役所も教えてくれない　手取りを増やす４５のコツ</h5>
+                    <p>価格：1485円、ポイント：15</p>
+                    <p>板倉 京(著)</p>
+                    <p>出版社：ダイヤモンド社</p>
+<p>カテゴリー：ジャンル別,ビジネス・経済,投資・金融・会社経営</p>
+                    <a href="https://www.amazon.co.jp/dp/B08G8VJJWD?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="タイトル未定"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>タイトル未定</h5>
+                    <p>価格：1386円、ポイント：14</p>
+                    <p>末續 慎吾(著)</p>
+                    <p>出版社：ダイヤモンド社</p>
+<p>カテゴリー：人生論・教訓,自己啓発,ビジネス・経済,倫理学・道徳,自己啓発</p>
+                    <a href="https://www.amazon.co.jp/dp/B08CZCD7KP?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51IWZbftQxL.jpg" class="mr-3 lazyload" alt="ぱい☆パニック ～挟まれたデカぱい～（フルカラー） 19 (桃色ｴﾝｼﾞｪﾙ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ぱい☆パニック ～挟まれたデカぱい～（フルカラー） 19 (桃色ｴﾝｼﾞｪﾙ)</h5>
+                    <p>価格：149円、ポイント：1</p>
+                    <p>inkey(著)</p>
+                    <p>出版社：ソルマーレ編集部</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08FD9GNGH?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/514avuN96sL.jpg" class="mr-3 lazyload" alt="絶倫ドS魔術師アークと私の専属契約書 8 (恋愛宣言)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>絶倫ドS魔術師アークと私の専属契約書 8 (恋愛宣言)</h5>
+                    <p>価格：165円、ポイント：2</p>
+                    <p>ざわっこ(著)</p>
+                    <p>出版社：秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08G8F5WYB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51QTuF3baVL.jpg" class="mr-3 lazyload" alt="シングルマザーの恋は偽装結婚から始まる 5 (素敵なロマンス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>シングルマザーの恋は偽装結婚から始まる 5 (素敵なロマンス)</h5>
+                    <p>価格：220円、ポイント：2</p>
+                    <p>渡辺くらこ(著)</p>
+                    <p>出版社：大都社／秋水社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08FCB464J?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="福祉教科書 保育士 出る！出る！一問一答 2021年版"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>福祉教科書 保育士 出る！出る！一問一答 2021年版</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>保育士試験対策委員会(著)</p>
+                    <p>出版社：翔泳社</p>
+<p>カテゴリー：社会福祉,社会学,福祉</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GPMPW9G?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="現場で使える 新人登録販売者便利帖 第2版"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現場で使える 新人登録販売者便利帖 第2版</h5>
+                    <p>価格：2090円、ポイント：21</p>
+                    <p>仲宗根 恵(著)</p>
+                    <p>出版社：翔泳社</p>
+<p>カテゴリー：登録販売者,医学・薬学,科学・テクノロジー,ビジネス関連</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GP2CZHG?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/513Rj0crGsL.jpg" class="mr-3 lazyload" alt="愛して欲しいと囁いた 4 (素敵なロマンス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>愛して欲しいと囁いた 4 (素敵なロマンス)</h5>
+                    <p>価格：165円、ポイント：2</p>
+                    <p>蒼椅哉方(著)</p>
+                    <p>出版社：秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GL8PZWV?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51-sTctvhsL.jpg" class="mr-3 lazyload" alt="転生エロエルフの中の人は29歳処女OLです。 5 (恋愛宣言)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>転生エロエルフの中の人は29歳処女OLです。 5 (恋愛宣言)</h5>
+                    <p>価格：220円、ポイント：2</p>
+                    <p>蒼田カヤ(著)</p>
+                    <p>出版社：大都社／秋水社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GL8KMQ1?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41CD2C0sGML.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちイタリア語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちイタリア語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856TRYH9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/410x7Mg4lsL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 旅するためのイタリア語　2020年 11月号 ［雑誌］ ＮＨＫテレビ 旅するイタリア語 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 旅するためのイタリア語　2020年 11月号 ［雑誌］ ＮＨＫテレビ 旅するイタリア語 (NHKテキスト)</h5>
+                    <p>価格：594円、ポイント：6</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856QN6V3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41JSxPFNgHL.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちスペイン語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちスペイン語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856YQQLL?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41vh7DjPu4L.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちドイツ語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちドイツ語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856V7D98?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41ciPW5YvcL.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちフランス語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちフランス語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08571LFB4?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/410q7rAsgXL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ テレビでハングル講座　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ テレビでハングル講座　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08572PG37?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/417CbJp0HjL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ テレビで中国語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ テレビで中国語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08575S65G?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/516xEb67jVL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 知りたガールと学ボーイ2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 知りたガールと学ボーイ2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：524円、ポイント：5</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08575QC99?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41Ao8uqm5IL.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちロシア語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちロシア語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08573MSKC?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51IWZbftQxL.jpg" class="mr-3 lazyload" alt="ぱい☆パニック ～挟まれたデカぱい～（フルカラー） 19 (桃色ｴﾝｼﾞｪﾙ)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ぱい☆パニック ～挟まれたデカぱい～（フルカラー） 19 (桃色ｴﾝｼﾞｪﾙ)</h5>
+                    <p>価格：149円、ポイント：1</p>
+                    <p>inkey(著)</p>
+                    <p>出版社：ソルマーレ編集部</p>
+<p>カテゴリー：アダルト,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08FD9GNGH?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/514avuN96sL.jpg" class="mr-3 lazyload" alt="絶倫ドS魔術師アークと私の専属契約書 8 (恋愛宣言)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>絶倫ドS魔術師アークと私の専属契約書 8 (恋愛宣言)</h5>
+                    <p>価格：165円、ポイント：2</p>
+                    <p>ざわっこ(著)</p>
+                    <p>出版社：秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08G8F5WYB?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51QTuF3baVL.jpg" class="mr-3 lazyload" alt="シングルマザーの恋は偽装結婚から始まる 5 (素敵なロマンス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>シングルマザーの恋は偽装結婚から始まる 5 (素敵なロマンス)</h5>
+                    <p>価格：220円、ポイント：2</p>
+                    <p>渡辺くらこ(著)</p>
+                    <p>出版社：大都社／秋水社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08FCB464J?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="福祉教科書 保育士 出る！出る！一問一答 2021年版"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>福祉教科書 保育士 出る！出る！一問一答 2021年版</h5>
+                    <p>価格：1650円、ポイント：17</p>
+                    <p>保育士試験対策委員会(著)</p>
+                    <p>出版社：翔泳社</p>
+<p>カテゴリー：社会福祉,社会学,福祉</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GPMPW9G?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="" class="mr-3 lazyload" alt="現場で使える 新人登録販売者便利帖 第2版"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>現場で使える 新人登録販売者便利帖 第2版</h5>
+                    <p>価格：2090円、ポイント：21</p>
+                    <p>仲宗根 恵(著)</p>
+                    <p>出版社：翔泳社</p>
+<p>カテゴリー：登録販売者,医学・薬学,科学・テクノロジー,ビジネス関連</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GP2CZHG?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/513Rj0crGsL.jpg" class="mr-3 lazyload" alt="愛して欲しいと囁いた 4 (素敵なロマンス)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>愛して欲しいと囁いた 4 (素敵なロマンス)</h5>
+                    <p>価格：165円、ポイント：2</p>
+                    <p>蒼椅哉方(著)</p>
+                    <p>出版社：秋水社ORIGINAL</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GL8PZWV?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/51-sTctvhsL.jpg" class="mr-3 lazyload" alt="転生エロエルフの中の人は29歳処女OLです。 5 (恋愛宣言)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>転生エロエルフの中の人は29歳処女OLです。 5 (恋愛宣言)</h5>
+                    <p>価格：220円、ポイント：2</p>
+                    <p>蒼田カヤ(著)</p>
+                    <p>出版社：大都社／秋水社</p>
+<p>カテゴリー：コミック・ラノベ・BL,マンガ,ティーンズラブ</p>
+                    <a href="https://www.amazon.co.jp/dp/B08GL8KMQ1?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41CD2C0sGML.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちイタリア語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちイタリア語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856TRYH9?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/410x7Mg4lsL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 旅するためのイタリア語　2020年 11月号 ［雑誌］ ＮＨＫテレビ 旅するイタリア語 (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 旅するためのイタリア語　2020年 11月号 ［雑誌］ ＮＨＫテレビ 旅するイタリア語 (NHKテキスト)</h5>
+                    <p>価格：594円、ポイント：6</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856QN6V3?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41JSxPFNgHL.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちスペイン語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちスペイン語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856YQQLL?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41vh7DjPu4L.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちドイツ語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちドイツ語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B0856V7D98?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/41ciPW5YvcL.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちフランス語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちフランス語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08571LFB4?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/410q7rAsgXL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ テレビでハングル講座　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ テレビでハングル講座　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08572PG37?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img data-src="https://m.media-amazon.com/images/I/417CbJp0HjL.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ テレビで中国語　2020年 11月号 ［雑誌］ (NHKテキスト)"/>
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ テレビで中国語　2020年 11月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：418円、ポイント：4</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+                    <a href="https://www.amazon.co.jp/dp/B08575S65G?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" target="_blank"><button type="button" class="btn btn-warning">Amazonで詳細を見る</button> </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
