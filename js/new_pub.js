@@ -120,6 +120,19 @@ templeterender(picturebooks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
+
+//アダルトを除外
+function adult_removefn() {
+	var adult_filter = document.getElementById('adult_filter').checked
+	if (adult_filter) {
+		nav = []
+		adults = items.filter(word => (!word.Category.includes('アダルト')) && ( !word.Category.includes('写真集')));
+		$('#frame').children().remove();
+		templeterender(adults)
+		for (let i = 0; i < nav.length; i++) { $('#frame').append(nav[i]); }
+	}
+}
+
 //日付を選択して切り替える
 function selectdays(day){
 
