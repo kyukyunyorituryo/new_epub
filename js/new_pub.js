@@ -120,6 +120,28 @@ templeterender(picturebooks)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
+//ライトノベル
+function lightnovelfn(){
+var lightnovel = document.getElementById('lightnovel');
+lightnovel.addEventListener('click', function() {
+nav=[]
+lightnovels = items.filter(word => word.Category.includes('ライトノベル'));
+$('#frame').children().remove();
+templeterender(lightnovels)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//雑誌
+function magazinefn(){
+var magazine = document.getElementById('magazine');
+magazine.addEventListener('click', function() {
+nav=[]
+magazines = items.filter(word => (word.Category.includes('雑誌')) ||(word.Title.includes('雑誌')));
+$('#frame').children().remove();
+templeterender(magazines)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 
 //アダルトを除外
 function adult_removefn() {
@@ -196,7 +218,8 @@ hobbyfn()
 literaturefn()
 picturebookfn()
 searchword()
-
+lightnovelfn()
+magazinefn()
 $('#datetimepicker1').on("dp.change", function(e){
 
 selectdays($(this).val())
