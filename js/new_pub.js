@@ -155,6 +155,18 @@ function adult_removefn() {
 	}
 }
 
+//分冊を除外
+function fascicle_removefn() {
+	var fascicle_filter = document.getElementById('fascicle_filter').checked
+	if (fascicle_filter) {
+		nav = []
+		fascicles = items.filter(word => (!word.Title.includes('分冊')) && ( !word.Title.includes('プチキス')));
+		$('#frame').children().remove();
+		templeterender(fascicles)
+		for (let i = 0; i < nav.length; i++) { $('#frame').append(nav[i]); }
+	}
+}
+
 //日付を選択して切り替える
 function selectdays(day){
 
