@@ -40,7 +40,7 @@ templeterender(comics)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
-//アダルトをクリックすると、単行本だけが表示される。
+//アダルトをクリックすると、adult本だけが表示される。
 function adultfn(){
 var adult = document.getElementById('adult');
 adult .addEventListener('click', function() {
@@ -167,6 +167,17 @@ function fascicle_removefn() {
 		for (let i = 0; i < nav.length; i++) { $('#frame').append(nav[i]); }
 	}
 }
+//期間限定無料を除外
+function zero_removefn() {
+	var fascicle_filter = document.getElementById('zero_filter').checked
+	if (fascicle_filter) {
+		nav = []
+		fascicles = items.filter(word => !word.Title.includes('期間限定無料'));
+		$('#frame').children().remove();
+		templeterender(fascicles)
+		for (let i = 0; i < nav.length; i++) { $('#frame').append(nav[i]); }
+	}
+}
 
 //日付を選択して切り替える
 function selectdays(day){
@@ -263,4 +274,7 @@ getJSON(json_data)
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
 //dosearch()
+//zero_removefn() 
+//fascicle_removefn()
+// adult_removefn() 
   });
