@@ -162,7 +162,7 @@ function limited_zerofn(){
 var limited_zero = document.getElementById('limited_zero');
 limited_zero.addEventListener('click', function() {
 nav=[]
-limited_zeros = items.filter(word => (word.Title.includes('期間限定無料')) );
+limited_zeros = items.filter(word => (word.Title.includes('期間限定無料')) ||(word.Title.includes('無料お試し版')) );
 $('#frame').children().remove();
 templeterender(limited_zeros)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
