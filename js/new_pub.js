@@ -150,7 +150,7 @@ function fasciclefn(){
 var fascicle = document.getElementById('fascicle');
 fascicle.addEventListener('click', function() {
 nav=[]
-fascicles = items.filter(word => (word.Title.includes('分冊')) ||(word.Title.includes('プチキス')));
+fascicles = items.filter(word => (word.Title.includes('分冊')) ||(word.Title.includes('プチキス'))||(word.Title.includes('単話')));
 $('#frame').children().remove();
 templeterender(fascicles)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
@@ -162,7 +162,7 @@ function limited_zerofn(){
 var limited_zero = document.getElementById('limited_zero');
 limited_zero.addEventListener('click', function() {
 nav=[]
-limited_zeros = items.filter(word => (word.Title.includes('期間限定無料')) ||(word.Title.includes('無料お試し版')) );
+limited_zeros = items.filter(word => (word.Title.includes('期間限定無料')) ||(word.Title.includes('無料お試し版')) ||(word.Title.includes('試し読み')));
 $('#frame').children().remove();
 templeterender(limited_zeros)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
@@ -246,12 +246,6 @@ var items
 var now   = new Date();
 nextday =getNextYMD(now);
 
-query=getQuery()
-if (query!==undefined){
-queryword=decodeURI(query)
-document.getElementById('searchtext').value=queryword
-}
-
 var url = location.href ;
 //frameに子要素がなかったら実行する
 child=document.getElementById('frame').children
@@ -267,8 +261,4 @@ json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+date+"j.json"
 getJSON(json_data)
     for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
-//dosearch()
-//zero_removefn() 
-//fascicle_removefn()
-// adult_removefn() 
   });
