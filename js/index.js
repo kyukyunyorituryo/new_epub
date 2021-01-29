@@ -204,6 +204,23 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }
 
 
+var getQuery = function() {
+	var query_array = [];
+	
+	// クエリ文字列を取得して「&」で分割
+	var query_list = window.location.search.substring(1).split('&');
+
+	// 値取得用のテンポラリ変数
+	var tmp_arr;
+	
+	// 分割したクエリ文字列の配列から、値を取り出す
+	query_list.forEach( function(e, i, a) {
+		tmp_arr = e.split('=');
+		query_array[ tmp_arr[0] ] = tmp_arr[1];
+	})
+   query=query_array.search
+	return query; 
+}
 
 document.addEventListener("DOMContentLoaded", function(){
 //    console.log(nav)
@@ -226,5 +243,22 @@ $('#datetimepicker1').on("dp.change", function(e){
 selectdays($(this).val())
 });
 var items
+var now   = new Date();
+nextday =getNextYMD(now);
 
+var url = location.href ;
+//frameに子要素がなかったら実行する
+child=document.getElementById('frame').children
+if (child.length==0){
+
+json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+nextday+"j.json"
+getJSON(json_data)
+    for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}
+else{
+date=url.match(/\d{8}/gi)[0]
+json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+date+"j.json"
+getJSON(json_data)
+    for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}
   });
