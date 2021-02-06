@@ -226,5 +226,12 @@ $('#datetimepicker1').on("dp.change", function(e){
 selectdays($(this).val())
 });
 var items
+var now   = new Date();
+nextday =getNextYMD(now);
 
+var url = location.href ;
+
+date=url.match(/\d{8}/gi)[0]
+json_data= "https://kyukyunyorituryo.github.io/new_epub/json/"+date+"j.json"
+getJSON(json_data)
   });
