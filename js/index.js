@@ -22,6 +22,11 @@ function getJSON(json_data) {
 		if(req.readyState == 4 && req.status == 200){
 			var data = JSON.parse(req.responseText);
 			items = data	;
+			//console.log(items)
+			items=adult_removefn(items)
+			items=fascicle_removefn(items)
+			items=zero_removefn(items)
+
 		}
 	};
 	req.open("GET",json_data, false);
@@ -167,6 +172,23 @@ $('#frame').children().remove();
 templeterender(limited_zeros)
 for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
+}
+//アダルトを除外
+function adult_removefn() {
+		nav = []
+		adults = items.filter(word => (!word.Category.includes('アダルト')) && ( !word.Category.includes('写真集')));
+		return adults
+}
+
+//分冊を除外
+function fascicle_removefn() {
+		fascicles = items.filter(word => (!word.Title.includes('分冊')) && ( !word.Title.includes('プチキス'))&& ( !word.Title.includes('単話')));
+		return fascicles
+}
+//期間限定無料を除外
+function zero_removefn() {
+		zero = items.filter(word =>( !word.Title.includes('期間限定'))&& ( !word.Title.includes('無料お試し'))&& ( !word.Title.includes('試し読み')));
+		return zero
 }
 
 
