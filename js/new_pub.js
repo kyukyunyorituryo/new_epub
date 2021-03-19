@@ -169,6 +169,28 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 }, false);
 }
 
+//物理
+function physicsfn(){
+var physics = document.getElementById('physics');
+physics.addEventListener('click', function() {
+nav=[]
+physicss = items.filter(word => word.Category.includes('物理'));
+$('#frame').children().remove();
+templeterender(physicss)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//医学
+function medicinefn(){
+var medicine = document.getElementById('medicine');
+medicine.addEventListener('click', function() {
+nav=[]
+medicines = items.filter(word => word.Category.includes('医学'));
+$('#frame').children().remove();
+templeterender(medicines)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 
 //日付を選択して切り替える
 function selectdays(day){
@@ -218,8 +240,10 @@ picturebookfn()
 searchword()
 lightnovelfn()
 magazinefn()
- fasciclefn()
- limited_zerofn()
+fasciclefn()
+limited_zerofn()
+physicsfn()
+medicinefn()
  
 $('#datetimepicker1').on("dp.change", function(e){
 

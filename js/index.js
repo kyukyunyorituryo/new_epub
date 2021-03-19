@@ -190,7 +190,118 @@ function zero_removefn() {
 		zero = items.filter(word =>( !word.Title.includes('期間限定'))&& ( !word.Title.includes('無料お試し'))&& ( !word.Title.includes('試し読み')));
 		return zero
 }
+//物理
+function physicsfn(){
+var physics = document.getElementById('physics');
+physics.addEventListener('click', function() {
+nav=[]
+physicss = items.filter(word => word.Category.includes('物理'));
+$('#frame').children().remove();
+templeterender(physicss)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//化学
+function chemistry(){
+var chemistry = document.getElementById('chemistry');
+chemistry.addEventListener('click', function() {
+nav=[]
+chemistrys = items.filter(word => word.Category.includes('化学'));
+$('#frame').children().remove();
+templeterender(chemistrys)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 
+//医学
+function medicinefn(){
+var medicine = document.getElementById('medicine');
+medicine.addEventListener('click', function() {
+nav=[]
+medicines = items.filter(word => word.Category.includes('医学'));
+$('#frame').children().remove();
+templeterender(medicines)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//生物
+function biology(){
+var biology = document.getElementById('biology');
+biology.addEventListener('click', function() {
+nav=[]
+biologys = items.filter(word => word.Category.includes('生物'));
+$('#frame').children().remove();
+templeterender(biologys)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//心理学
+function psychologyfn(){
+var psychology = document.getElementById('psychology');
+psychology.addEventListener('click', function() {
+nav=[]
+psychologys = items.filter(word => word.Category.includes('心理学'));
+$('#frame').children().remove();
+templeterender(psychologys)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//数学
+function mathematicsfn(){
+var mathematics = document.getElementById('mathematics');
+mathematics.addEventListener('click', function() {
+nav=[]
+mathematicss = items.filter(word => word.Category.includes('数学'));
+$('#frame').children().remove();
+templeterender(mathematicss)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+
+//教育
+function educationfn(){
+var education = document.getElementById('education');
+education.addEventListener('click', function() {
+nav=[]
+educations = items.filter(word => word.Category.includes('教育'));
+$('#frame').children().remove();
+templeterender(educations)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//工学
+function engineeringfn(){
+var engineering = document.getElementById('engineering');
+engineering.addEventListener('click', function() {
+nav=[]
+engineerings = items.filter(word => word.Category.includes('工学'));
+$('#frame').children().remove();
+templeterender(engineerings)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//科学・テクノロジー
+function technologyfn(){
+var technology = document.getElementById('technology');
+technology.addEventListener('click', function() {
+nav=[]
+technologys = items.filter(word => word.Category.includes('科学・テクノロジー'));
+$('#frame').children().remove();
+templeterender(technologys)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
+//旅行
+function travelfn(){
+var travel = document.getElementById('travel');
+travel.addEventListener('click', function() {
+nav=[]
+travels = items.filter(word => word.Category.includes('旅行'));
+$('#frame').children().remove();
+templeterender(travels)
+for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
+}, false);
+}
 
 //日付を選択して切り替える
 function selectdays(day){
@@ -259,7 +370,19 @@ lightnovelfn()
 magazinefn()
  fasciclefn()
  limited_zerofn()
- 
+ physicsfn()
+medicinefn()
+chemistry()
+biology()
+psychologyfn()
+mathematicsfn()
+educationfn()
+technologyfn()
+engineeringfn()
+
+
+travelfn()
+
 $('#datetimepicker1').on("dp.change", function(e){
 
 selectdays($(this).val())
