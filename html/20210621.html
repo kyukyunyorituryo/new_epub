@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--OGP -->
+    <meta property="og:title" content="６月２１日発売のkindle本" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://kyukyunyorituryo.github.io/new_epub/" />
+<meta property="og:image" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg" />
+<meta property="og:site_name" content="新刊チェック" />
+<meta property="og:description" content="キンドルの新刊を一覧で表示する「新刊チェック」" />
+    <!--Twitterカード -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@99nyorituryo">
+<meta name="twitter:creator" content="@99nyorituryo">
+<meta name="twitter:title" content="６月２１日発売のkindle本">
+<meta name="twitter:description" content="キンドルの新刊を一覧で表示する「新刊チェック」">
+<meta name="twitter:image:src" content="https://kyukyunyorituryo.github.io/new_epub/twitter.jpg">
+<link rel="shortcut icon" href="../favicon.ico" type="image/vnd.microsoft.icon" /> 
+<link rel="icon" href="../favicon.ico" type="image/vnd.microsoft.icon" />
+    <title>６月２１日発売のkindle本</title>
+    <!-- BootstrapのCSS読み込み -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Google Analytics -->
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-93342586-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+    <!-- jQuery読み込み -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+     <!-- BootstrapのJS読み込み -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script
+    <!-- datetimepicker読み込み -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="../css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/ja.js" type="text/javascript"></script>
+<script src="../js/bootstrap-datetimepicker.min.js"></script>
+ <!-- 追加した部分 -->
+       <script defer type="text/javascript" src="../js/share.js"></script>
+<script type="text/javascript" src="../js/ejs.min.js"></script>
+<script type="text/javascript" src="../js/new_pub.js"></script>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="https://kyukyunyorituryo.github.io/">Topページ</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="Navber">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="https://99nyorituryo.hatenablog.com/">ブログ <span class="sr-only">(現位置)</span></a>
+                    </li>
+                    <li class="nav-item">
+                       <a class="nav-link" href="https://www.amazon.co.jp/-/e/B07Q2TZFCN">キンドル著者ページ</a>
+                    </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://github.com/kyukyunyorituryo/">GitHub</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_epub/">kindle新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/new_pub/">紙の新刊</a>
+                  </li>
+                  <li class="nav-item">
+                  <a class="nav-link" href="https://kyukyunyorituryo.github.io/kindle_sale/">kindleセール</a>
+                  </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </header>
+    <div class="container ">
+        <h2 class="alert alert-success">SNSでシェア</h2>
+        <!-- snsボタン -->
+        <div>
+            <ul class="list-group list-group-horizontal-md ">
+                <li class="list-group-item">
+                    <div class="sns_icon facebook_back"><a href="" target="_blank" title="Facebookでシェア"><img src="../images/FB-f-Logo__blue_100.png" alt="facebook" width="50" height="50"><p>facebook</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  twitter_back"><a href="" target="_blank" title="Twitterでシェア"><img src="../images/Twitter_Social.svg" alt="twitter" width="50" height="50"><p>twitter</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon  hatena_back"><a href="" target="_blank" title="はてなブックマークに登録"><img src="../images/hatenabookmark-logomark.svg" alt="はてなブックマーク" width="50" height="50"><p>hatena</p></a></div>
+                </li>
+                <li class="list-group-item">
+                    <div class="sns_icon line_back"><a href="" target="_blank" title="LINEに送る"><img src="../images/line-share.png" alt="LINE" width="50" height="50"><p>line</p></a></div>
+                </li>
+            </ul>
+        </div>
+        <!-- snsボタン終了 -->
+        <h2 class="alert alert-success">絞り込み検索</h2>
+        <p>著者名、タイトル、カテゴリなどから絞り込みができます。</p>
+                <div class="form-inline my-2 my-lg-0">
+                    <input type="search" class="form-control mr-sm-2" id="searchtext" placeholder="検索..." aria-label="検索...">
+                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0"  id="search">検索</button>
+                </div>
+        <h2 class="alert alert-success">発売日の選択</h2>
+            <div class="row">
+        <div class='col-sm-6'>
+            <input type='text' class="form-control" id='datetimepicker1' placeholder="YYYYMMDD" />
+        </div>
+    </div>
+    <p><a class="nav-link" href="../list.html">発売日一覧</a></p>
+    <link rel="stylesheet" href="../css/calendar.css">
+<script type="text/javascript" src="../js/calendar.js"></script>
+<div class="nondisplayFrame">
+        <h2 class="alert alert-success">カテゴリの選択</h2>
+<button id='comic' type="button" class="btn btn-outline-primary">コミック</button>
+<button id='adult' type="button" class="btn btn-outline-secondary">アダルト</button>
+<button id='bl' type="button" class="btn btn-outline-success">BL</button>
+<button id='business' type="button" class="btn btn-outline-danger">ビジネス・経済</button>
+<button id='other' type="button" class="btn btn-outline-warning">その他</button>
+<button id='hobby' type="button" class="btn btn-outline-info">趣味・実用</button>
+<button id='literature'  type="button" class="btn btn-outline-dark">文学・評論</button>
+<button id='picturebook' type="button" class="btn btn-outline-primary">絵本・児童書</button>
+<button id='lightnovel' type="button" class="btn btn-outline-secondary">ライトノベル</button>
+<button id='magazine' type="button" class="btn btn-outline-secondary">雑誌</button>
+
+<button id='fascicle' type="button" class="btn btn-outline-secondary">分冊</button>
+<button id='limited_zero' type="button" class="btn btn-outline-secondary">期間限定無料</button>
+<button id='physics' type="button" class="btn btn-outline-success">物理</button>
+<button id='chemistry' type="button" class="btn btn-outline-danger">化学</button>
+<button id='medicine' type="button" class="btn btn-outline-warning">医学</button>
+<button id='biology' type="button" class="btn btn-outline-info">生物</button>
+
+<button id='psychology' type="button" class="btn btn-outline-secondary">心理学</button>
+<button id='mathematics' type="button" class="btn btn-outline-secondary">数学</button>
+<button id='education' type="button" class="btn btn-outline-success">教育</button>
+<button id='engineering' type="button" class="btn btn-outline-danger">工学</button>
+<button id='technology' type="button" class="btn btn-outline-warning">科学・テクノロジー</button>
+<button id='travel' type="button" class="btn btn-outline-info">旅行</button>
+
+</div>
+
+<style type="text/css">
+.nondisplayFrame {
+  display:inline;
+}
+</style>
+<!-- 
+後で追加
+<button  type="button" class="btn btn-outline-light">ムック</button>
+-->
+
+<style type="text/css">
+img.mr-3 {
+ max-width: 100%;
+ max-height: 100%;
+ width: auto;
+ height: auto;
+  text-align: center;
+}
+.img-container--table-cell {
+ position: relative;
+ width: 180px;
+ height: 250px;
+ display: table-cell;
+ vertical-align: middle;
+ text-align: center;
+ border: 1px solid darkgray;
+ }
+</style>
+
+        <h2 id='release' class="alert alert-success">６月２１日発売のkindle本</h2>
+        <ul id='frame' class="list-unstyled border alert alert-primary" >
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41bAK3vK+qL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ テレビで中国語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ テレビで中国語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：530円、ポイント：5</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMQCCK7</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMQCCK7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/412KfmVDlCL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 旅するためのイタリア語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 旅するためのイタリア語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：594円、ポイント：6</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMQ3NX7</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMQ3NX7?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41-iar2TAhL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 旅するためのスペイン語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 旅するためのスペイン語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：594円、ポイント：6</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMPY5ZR</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMPY5ZR?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/418sVZOWRrL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちドイツ語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちドイツ語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：530円、ポイント：5</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMPT7TW</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMPT7TW?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/412+NB0y9XL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫラジオ まいにちロシア語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫラジオ まいにちロシア語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：530円、ポイント：5</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMP3WCZ</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMP3WCZ?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/4138Y8T8StL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 旅するためのドイツ語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 旅するためのドイツ語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：594円、ポイント：6</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMMZZDY</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMMZZDY?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41s76t6xRSL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ 旅するためのフランス語　2021年7月号 ［雑誌］ (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ 旅するためのフランス語　2021年7月号 ［雑誌］ (NHKテキスト)</h5>
+                    <p>価格：594円、ポイント：6</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XMMQH5J</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XMMQH5J?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/41CQnFVYzrL._SL500_.jpg" class="mr-3 lazyload" alt="ＮＨＫテレビ もっと伝わる！　即レス英会話　2021年7月号 ［雑誌］ ＮＨＫテレビ もっと伝わる！即レス英会話 (NHKテキスト)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ＮＨＫテレビ もっと伝わる！　即レス英会話　2021年7月号 ［雑誌］ ＮＨＫテレビ もっと伝わる！即レス英会話 (NHKテキスト)</h5>
+                    <p>価格：530円、ポイント：5</p>
+                    <p>日本放送協会,NHK出版(編集)</p>
+                    <p>出版社：ＮＨＫ出版、ASIN：B08XML7PV6</p>
+<p>カテゴリー：ジャンル別,語学・教育</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B08XML7PV6?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ワンナイト・モーニング(5) (ヤングキングコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ワンナイト・モーニング(5) (ヤングキングコミックス)</h5>
+                    <p>価格：759円、ポイント：8</p>
+                    <p>奥山ケニチ(著)</p>
+                    <p>出版社：少年画報社、ASIN：B093KLXVBM</p>
+<p>カテゴリー：コミック,青年マンガ</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B093KLXVBM?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="奥山ケニチ短編集 めくれる思春期 (ヤングキングコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>奥山ケニチ短編集 めくれる思春期 (ヤングキングコミックス)</h5>
+                    <p>価格：880円、ポイント：9</p>
+                    <p>奥山ケニチ(著)</p>
+                    <p>出版社：少年画報社、ASIN：B093KJWWZX</p>
+<p>カテゴリー：コミック,青年マンガ</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B093KJWWZX?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ウグイス 今日もラブホでお仕事です(1) (ヤングキングコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ウグイス 今日もラブホでお仕事です(1) (ヤングキングコミックス)</h5>
+                    <p>価格：759円、ポイント：8</p>
+                    <p>民谷剛(著)</p>
+                    <p>出版社：少年画報社、ASIN：B093KN3LDS</p>
+<p>カテゴリー：コミック,青年マンガ</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B093KN3LDS?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="優しい声よりメシがいい(1) (ヤングキングコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>優しい声よりメシがいい(1) (ヤングキングコミックス)</h5>
+                    <p>価格：759円、ポイント：8</p>
+                    <p>伊藤静(著)</p>
+                    <p>出版社：少年画報社、ASIN：B093K7JLJL</p>
+<p>カテゴリー：コミック,青年マンガ</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B093K7JLJL?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/51Z0r0VPoTS._SL500_.jpg" class="mr-3 lazyload" alt="俺の×××に卵を産んで (White Chocolate)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>俺の×××に卵を産んで (White Chocolate)</h5>
+                    <p>価格：500円、ポイント：5</p>
+                    <p>かがちはかおる(著)</p>
+                    <p>出版社：CHOCOLATE PUBLISHING、ASIN：B09476J8ZN</p>
+<p>カテゴリー：日本文学研究,ライトノベル,ボーイズラブノベルス</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B09476J8ZN?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="週刊東洋経済 2021年6/26号 [雑誌]" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>週刊東洋経済 2021年6/26号 [雑誌]</h5>
+                    <p>価格：703円、ポイント：7</p>
+                    <p>週刊東洋経済編集部(著)</p>
+                    <p>出版社：東洋経済新報社、ASIN：B093K5F577</p>
+<p>カテゴリー：ジャンル別,ビジネス・経済</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B093K5F577?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ネクストF 2021年13号 [雑誌] (ネクストFコミックス)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ネクストF 2021年13号 [雑誌] (ネクストFコミックス)</h5>
+                    <p>価格：352円、ポイント：4</p>
+                    <p>ネクストF編集部(著)</p>
+                    <p>出版社：ジャイブ、ASIN：B0956ZNQ1M</p>
+<p>カテゴリー：コミック,マンガ雑誌</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B0956ZNQ1M?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ドロシイ殺し 〈メルヘン殺し〉シリーズ (創元推理文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ドロシイ殺し 〈メルヘン殺し〉シリーズ (創元推理文庫)</h5>
+                    <p>価格：800円、ポイント：8</p>
+                    <p>小林 泰三(著)</p>
+                    <p>出版社：東京創元社、ASIN：B095335J85</p>
+<p>カテゴリー：ジャンル別,Featured Categories,日本の小説・文芸</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B095335J85?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="手／ヴァランダーの世界 刑事ヴァランダー・シリーズ (創元推理文庫)" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>手／ヴァランダーの世界 刑事ヴァランダー・シリーズ (創元推理文庫)</h5>
+                    <p>価格：1400円、ポイント：14</p>
+                    <p>ヘニング・マンケル(著)</p>
+                    <p>出版社：東京創元社、ASIN：B09532XCG8</p>
+<p>カテゴリー：その他の外国文学,Featured Categories,小説・文芸</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B09532XCG8?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+            <li class="media mb-3 alert-warning ">
+  <div class="img-container--table-cell d-flex align-items-center">
+    <img src="https://m.media-amazon.com/images/I/01MKUOLsA5L._SL500_.gif" class="mr-3 lazyload" alt="ボーンヤードは語らない 〈マリア＆漣〉シリーズ" loading="lazy" />
+  </div>
+                <div class="media-body ml-3">
+                    <h5>ボーンヤードは語らない 〈マリア＆漣〉シリーズ</h5>
+                    <p>価格：1900円、ポイント：19</p>
+                    <p>市川 憂人(著)</p>
+                    <p>出版社：東京創元社、ASIN：B09532TPTD</p>
+<p>カテゴリー：ジャンル別,日本の小説・文芸</p>
+<a class="btn btn-warning" href="https://www.amazon.co.jp/dp/B09532TPTD?tag=99hatena-22&amp;linkCode=ogi&amp;th=1&amp;psc=1" role="button"  rel="noreferrer" target="_blank">Amazonで詳細を見る </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
