@@ -176,7 +176,10 @@ for (let i = 0; i < nav.length; i++) {$('#frame').append(nav[i]);}
 //アダルトを除外
 function adult_removefn() {
 		nav = []
-		adults = items.filter(word => (!word.Category.includes('アダルト')) && ( !word.Category.includes('写真集')));
+	adults = items.filter(word => (!word.Category.includes('アダルト')) && (!word.Category.includes('写真集')));
+	adults = adults.filter(word => (!word.Publisher.includes('文苑堂')) && (!word.Publisher.includes('エンジェル出版')));
+	adults = adults.filter(word => (!word.Publisher.includes('ナイトコミック')) && (!word.Publisher.includes('どろっぷす！')));
+	adults = adults.filter(word => (!word.Publisher.includes('プレステージ')) && (!word.Publisher.includes('渋谷六花舎')));
 		return adults
 }
 
