@@ -341,7 +341,7 @@ mathematicsfn()
 educationfn()
 technologyfn()
 engineeringfn()
-
+travelfn()
 $('#datetimepicker1').on("dp.change", function(e){
 
 selectdays($(this).val())
