@@ -42,17 +42,7 @@ const siteTitle = hiduke || `Title`
       >
         <header>
           <h1 itemProp="headline">{siteTitle}</h1>
- <p>{day.substr( 0, 4 )+"年"+day.substr( 4, 2 )+"月"+day.substr( 6, 2 )+"日"}　
-              {/*
-          カテゴリ：{catetag && catetag.length > 0 && catetag.map(catetag => {
-          return (
-                  //<Link to={`/tags/${kebabCase(tag)}/`} itemProp="url">
-                    <button>{catetag}</button>
-                 // </Link>
-          )
-          })}
-          */}
-          </p>
+         <p>{day.substr( 0, 4 )+"年"+day.substr( 4, 2 )+"月"+day.substr( 6, 2 )+"日"}</p>
         </header>
         <Search book={book} catetag={catetag} pubtag={pubtag}/>
         <hr />
